@@ -186,11 +186,10 @@ p {
   align-items: flex-start;
   padding: 0px;
   gap: 13px;
-  height: 57px;
+  justify-content: center;
 }
 
 .deadline-date {
-  height: 25px;
   font-weight: 700;
   color: var(--dark-grey);
 }
@@ -424,7 +423,7 @@ p {
 }
 
 @media (max-width: 768px) {
-  .content-summary{
+  .content-summary {
     padding-top: 15px;
   }
 
@@ -452,19 +451,26 @@ p {
 }
 
 @media (max-width: 520px) {
-  h1{
+  h1 {
     font-size: 28px !important;
   }
 
-  .content-summary{
+  .content-summary {
     padding-top: 30px;
   }
 
+  .deadline {
+    gap: 0;
+  }
 
+  .deadline-upcoming {
+    font-size: 14px;
+  }
 
-  h4{
+  h4 {
     font-size: 16px !important;
   }
+
   .main {
     max-width: 420px;
     margin-left: 20px;
@@ -473,7 +479,7 @@ p {
     justify-content: center;
   }
 
-  .headline{
+  .headline {
     margin-top: -10px;
     gap: 0px;
   }
@@ -504,6 +510,7 @@ p {
   .urgent-info {
     gap: 1px;
   }
+
   .urgnet-number {
     font-size: 48px;
   }
@@ -577,12 +584,12 @@ p {
   }
 }
 
-@media (max-width: 420px){
-  h1{
+@media (max-width: 420px) {
+  h1 {
     width: min-content !important;
   }
 
-  .headline{
+  .headline {
     width: min-content !important;
     margin-left: 10px;
   }

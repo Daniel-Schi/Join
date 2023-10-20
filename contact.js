@@ -80,7 +80,6 @@ function newLetters(inputname) {
 /**
  * Saves the edited user information back to the users array.
  * @param {number} i - The index of the contact in the users array.
- * @returns {boolean} Returns false to prevent form submission.
  */
 async function SaveUser(i) {
     let name = document.getElementById('name').value;
@@ -98,7 +97,6 @@ async function SaveUser(i) {
         contactInit();
         closeOverdivArrow();
     }
-    return false;
 }
 
 /**

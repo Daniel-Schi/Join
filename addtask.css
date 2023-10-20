@@ -3,13 +3,17 @@
   margin-top: 161px;
   margin-left: 124px;
 }
+
 .categorybox div {
-  height: 50px; /* Setze hier die gewünschte Höhe für die Divs innerhalb der Kategoriebox */
+  height: 50px;
+  /* Setze hier die gewünschte Höhe für die Divs innerhalb der Kategoriebox */
 }
+
 .headTaskContainer h1 {
   font-size: 61px;
   margin-top: 0px;
 }
+
 .mainTaskContainer {
   display: flex;
   margin-left: 124px;
@@ -29,27 +33,29 @@ input {
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 13px 21px 13px 21px;
+  padding: 13px 21px 13px 10px;
   height: 51px;
   background: #ffffff;
   border: 1px solid #d1d1d1;
   border-radius: 10px;
-  font-size: 21px;
+  font-size: 18px;
 }
+
 textarea {
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 13px 21px;
+  padding: 13px 10px;
   width: 422px;
   height: 119px;
   background: #ffffff;
   border: 1px solid #d1d1d1;
   border-radius: 10px;
   font-family: Inter;
-  font-size: 21px;
+  font-size: 18px;
 }
+
 .titleContainer {
   display: flex;
   flex-direction: column;
@@ -59,10 +65,12 @@ textarea {
   display: flex;
   flex-direction: column;
 }
+
 .categoryContainer {
   display: flex;
   flex-direction: column;
 }
+
 .descriptionContainer {
   display: flex;
   flex-direction: column;
@@ -74,13 +82,15 @@ textarea {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: 13px 21px;
+  padding: 13px 10px;
   width: 422px;
   height: 51px;
   background: #ffffff;
   border: 1px solid #d1d1d1;
   border-radius: 10px;
   cursor: pointer;
+  font-size: 18px;
+  ;
 }
 
 .childPopupTaskContainer {
@@ -105,6 +115,7 @@ textarea {
   border-left: 1px solid #d1d1d1;
   height: 551px;
 }
+
 .rightTaskContainer {
   display: flex;
   flex-direction: column;
@@ -114,22 +125,25 @@ textarea {
   margin-right: 123px;
   margin-left: 59px;
 }
+
 .dateContainer {
   display: flex;
   flex-direction: column;
 }
+
 .prioContainer {
   display: flex;
   flex-direction: column;
   margin-bottom: 5px;
 }
-.prioContainerPopup{
+
+.prioContainerPopup {
   display: flex;
   flex-direction: column;
   margin-bottom: 5px;
 }
 
-.prioContainerPopup label{
+.prioContainerPopup label {
   display: flex;
   flex-direction: column;
   font-weight: bold;
@@ -141,10 +155,12 @@ textarea {
   display: flex;
   gap: 8px;
 }
+
 .subtaskContainer {
   display: flex;
   flex-direction: column;
 }
+
 .subtaskChildContainer {
   display: flex;
   background-color: #ffffff;
@@ -170,14 +186,16 @@ textarea {
 .subtaskChildContainer:focus-within {
   outline: 2px solid black;
 }
+
 .subtaskChildContainer input:focus {
   outline: none;
 }
 
-.subBox{
+.subBox {
   word-break: break-all;
   margin-bottom: 10px;
 }
+
 .prioBox {
   box-sizing: border-box;
   display: flex;
@@ -198,6 +216,7 @@ textarea {
   box-shadow: 0 4px 4px 0 rgb(0 0 0 / 25%);
   scale: 1.05;
 }
+
 .buttonTaskContainer {
   display: flex;
   gap: 10px;
@@ -232,9 +251,11 @@ textarea {
   gap: 16px;
   transition: background 200ms ease-in-out;
 }
+
 .buttonTask:hover .cancelIcon {
   content: url("img/iconoir_cancel_hover.svg");
 }
+
 .buttonTask:hover {
   box-shadow: 0 4px 4px 0 rgb(0 0 0 / 25%);
   border: 1px solid rgb(41, 171, 226);
@@ -257,6 +278,7 @@ textarea {
   gap: 14px;
   transition: background 200ms ease-in-out;
 }
+
 .buttonTask2:hover {
   box-shadow: 0 4px 4px 0 rgb(0 0 0 / 25%);
   background-color: rgb(41, 171, 226);
@@ -281,6 +303,7 @@ textarea {
   background-color: rgba(9, 25, 49);
   border-radius: 5px;
 }
+
 .subTaskDescription::-webkit-scrollbar {
   width: 8px;
 }
@@ -289,11 +312,13 @@ textarea {
   display: flex;
   gap: 13px;
 }
+
 .checkContainer input {
   height: 25px;
   margin: 0px;
   cursor: pointer;
 }
+
 .d-none {
   display: none;
 }
@@ -336,21 +361,21 @@ textarea {
 
 .categoryBox {
   box-sizing: border-box;
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    width: 422px;
-    background: #ffffff;
-    border: 1px solid #d1d1d1;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    cursor: pointer;
-    border-top: none;
-    flex-direction: column;
-    max-height: 110px;
-    min-height: 10px;
-    overflow: auto;
-    overflow-x: hidden;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 422px;
+  background: #ffffff;
+  border: 1px solid #d1d1d1;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  cursor: pointer;
+  border-top: none;
+  flex-direction: column;
+  max-height: 110px;
+  min-height: 10px;
+  overflow: auto;
+  overflow-x: hidden;
 }
 
 .categoryBox::-webkit-scrollbar {
@@ -397,17 +422,20 @@ textarea {
   margin-left: 5px;
   z-index: 3;
 }
+
 .selected-color {
   width: 15px;
   height: 15px;
   border-radius: 50%;
 }
+
 .colorCategoryBox {
   display: flex;
   align-items: center;
   padding: 0px 21px;
   width: 88%;
 }
+
 .colorCategoryBox:hover {
   background-color: #d1d1d1;
 }
@@ -418,6 +446,7 @@ textarea {
   border-radius: 50%;
   margin: 10px;
 }
+
 .categoryTextBox {
   display: flex;
   align-items: center;
@@ -445,18 +474,15 @@ textarea {
   width: 90%;
 }
 
-
-
 .contactBox:hover {
   background-color: #d1d1d1;
 }
 
-.contactBox input{
+.contactBox input {
   margin: 0px;
 }
 
-
-.newCategoryBox{
+.newCategoryBox {
   box-sizing: border-box;
   display: flex;
   align-items: flex-start;
@@ -473,7 +499,7 @@ textarea {
   width: 100%;
 }
 
-.newCategoryBox:hover{
+.newCategoryBox:hover {
   background-color: #d1d1d1;
 }
 
@@ -482,27 +508,33 @@ textarea {
   .buttonTaskContainer {
     right: 10px;
   }
+
   .rightTaskContainer {
     margin-right: 0px;
   }
+
   .middleTaskContainer {
-    display:none;
-}
- .mainTaskContainer{
-  justify-content: space-around;
- }
+    display: none;
+  }
+
+  .mainTaskContainer {
+    justify-content: space-around;
+  }
 }
 
 @media (max-width: 1335px) {
   .rightTaskContainer {
     margin-left: 0px;
   }
+
   .leftTaskContainer {
     margin-right: 0px;
   }
+
   .leftAddTaskContainer {
     margin-right: 0px;
   }
+
   .middleAddTaskContainer {
     display: none;
   }
@@ -514,21 +546,26 @@ textarea {
     justify-content: center;
     margin-left: 0px;
   }
+
   .middleTaskContainer {
     display: none;
   }
+
   .mainTaskContainer {
     flex-direction: column;
     align-items: center;
     margin-left: 0px;
   }
+
   .titleContainer {
     width: 422px;
   }
+
   .buttonTaskContainer {
     position: unset;
     justify-content: center;
   }
+
   .assignedToContainer {
     margin-bottom: 30px;
   }
@@ -540,15 +577,18 @@ textarea {
     padding: 0px 34px 0px 33px;
     justify-content: flex-start;
   }
+
   .mainTaskContainer {
     display: flex;
     padding: 0px 34px 0px 30px;
     justify-content: flex-start;
     align-items: start;
   }
+
   .buttonTaskContainer {
     display: none;
   }
+
   .buttonTaskHeader {
     border: 1px solid #2a3647;
     background-color: #2a3647;
@@ -569,6 +609,7 @@ textarea {
     top: 20px;
     right: 25px;
   }
+
   .headTaskContainer {
     margin-top: 0px;
   }
@@ -577,29 +618,37 @@ textarea {
     width: 100%;
     font-size: 16px;
   }
+
   .leftTaskContainer {
     width: 100%;
     font-size: 16px;
   }
+
   .titleContainer {
     width: 100%;
   }
+
   .childTaskContainer {
     width: 100%;
   }
+
   textarea {
     width: 100%;
   }
+
   .dropDownBox {
     width: 100%;
   }
+
   .categoryBox {
     width: 100%;
   }
+
   .headTaskContainer h1 {
     font-size: 41px;
   }
 }
+
 @media (max-width: 428px) {
   .prioChildContainer {
     flex-direction: column;

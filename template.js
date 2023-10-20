@@ -63,28 +63,24 @@ function generateEditPopupCardHtml(task, taskId, today) {
     <form onsubmit="event.preventDefault(); savePopupCard(${taskId})">
       <div>
         <div class="cancelPopupCardBox"><div onclick="closePopupCard()" class="cancelIconPopupCard"><img src="img/cross.png"></div></div>
-        <div class="editPopupCardCategory" id="popupcardCategory" onclick="setPopupCategoryCard(${taskId})" style="background-color:${
-    task.categoryColor
-  }">${task.categoryText}</div>
+        <div class="editPopupCardCategory" id="popupcardCategory" onclick="setPopupCategoryCard(${taskId})" style="background-color:${task.categoryColor
+    }">${task.categoryText}</div>
         <div id="popupCategoryBox" class="popupCategoryBox"></div>
       </div>
       <div class="popupCardtitleContainer">
           <label for="title">Title</label>
-          <input required type="text" class="popupCardTitle" id="popupCardTitle" minlength="3" value="${
-            task.title
-          }">
+          <input required type="text" class="popupCardTitle" id="popupCardTitle" minlength="3" value="${task.title
+    }">
       </div>
       <div class="popupCarddescriptionContainer">
           <label for="description">Description</label>
-          <textarea required class="popupcardDescription" id="popupcardDescription" minlength="3">${
-            task.description
-          }</textarea>
+          <textarea required class="popupcardDescription" id="popupcardDescription" minlength="3">${task.description
+    }</textarea>
       </div>
       <div class="popupCarddateContainer">
         <label for="date">Due date</label>
-        <input type="date" class="popupCardDate" id="popupCardDate" min="${
-          today.toISOString().split("T")[0]
-        }" value="${task.date}">
+        <input type="date" class="popupCardDate" id="popupCardDate" min="${today.toISOString().split("T")[0]
+    }" value="${task.date}">
       </div>
       <div class="prioContainerPopup" id="prioContainer">
                     <label for="Prio">Prio</label>
@@ -181,21 +177,18 @@ function generateEditShowCardHtml(task, taskId, today) {
       </div>
       <div class="popupCardtitleContainer">
           <label for="title">Title</label>
-          <input required type="text" class="popupCardTitle" id="popupCardTitle" minlength="3" value="${
-            task.title
-          }">
+          <input required type="text" class="popupCardTitle" id="popupCardTitle" minlength="3" value="${task.title
+    }">
       </div>
       <div class="popupCarddescriptionContainer">
           <label for="description">Description</label>
-          <textarea required class="popupcardDescription" id="popupcardDescription" minlength="3">${
-            task.description
-          }</textarea>
+          <textarea required class="popupcardDescription" id="popupcardDescription" minlength="3">${task.description
+    }</textarea>
       </div>
       <div class="popupCarddateContainer">
         <label for="date">Due date</label>
-        <input type="date" class="popupCardDate" id="popupCardDate" min="${
-          today.toISOString().split("T")[0]
-        }" value="${task.date}">
+        <input type="date" class="popupCardDate" id="popupCardDate" min="${today.toISOString().split("T")[0]
+    }" value="${task.date}">
       </div>
       <div class="prioContainerPopup" id="prioContainer">
                     <label for="Prio">Prio</label>
@@ -334,7 +327,7 @@ function newCategoryHtml() {
   </div>`;
 }
 
-function renderSummaryCardsHTML(totalCount,todoCount,progressCount,feedbackCount,doneCount,urgentCount){
+function renderSummaryCardsHTML(totalCount, todoCount, progressCount, feedbackCount, doneCount, urgentCount) {
   return `
   <div class="content">
     <div class="tasks-container">
@@ -393,8 +386,8 @@ function renderSummaryCardsHTML(totalCount,todoCount,progressCount,feedbackCount
   </div>`;
 }
 
-function renderHTML(){
-  return`
+function renderHTML() {
+  return `
   <div>
                   <h1>Log in</h1>
                   <div class="overH1-line">
@@ -437,7 +430,7 @@ function renderHTML(){
 `;
 }
 
-function SignUpHTML(){
+function SignUpHTML() {
   return `
   <div class="back">
   <img onclick="back()" src="img/blackarrowicon.svg" alt="">
@@ -451,7 +444,7 @@ function SignUpHTML(){
 <div class="login-value">
   <form onsubmit="register();return false;">
       <div class="relativ-for-icon">
-          <input required id="inputName" placeholder="name" type="text" minlength="2">
+          <input required id="inputName" placeholder="Name" type="text" minlength="2">
           <img src="img/people.svg" alt="">
       </div>
       <div class="relativ-for-icon">
@@ -473,7 +466,7 @@ function SignUpHTML(){
   `;
 }
 
-function forgotMyPasswordHTML(){
+function forgotMyPasswordHTML() {
   return /* html */`
   
   <div class="back">

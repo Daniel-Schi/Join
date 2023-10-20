@@ -41,12 +41,15 @@ function closeNewCategory() {
 function prio(elementId, element) {
   if (elementId === "urgent") {
     element.style.backgroundColor = "rgb(255, 61, 0)";
+    // element.style.color = "white";
     element.querySelector("img").src = "img/Prio-urgent-white.png";
   } else if (elementId === "medium") {
     element.style.backgroundColor = "rgb(255, 168, 0)";
+    element.style.color = "white";
     element.querySelector("img").src = "img/Prio-medium-white.png";
   } else if (elementId === "low") {
     element.style.backgroundColor = "rgb(122, 226, 41)";
+    element.style.color = "white";
     element.querySelector("img").src = "img/Prio-low-white.png";
   }
 }
@@ -72,7 +75,7 @@ function checkPrioPopupCard(task) {
     priorityText = "Low";
     backgroundColor = "rgb(122, 226, 41)";
   }
-  return { priorityImage, priorityText, backgroundColor };
+  return { priorityImage, priorityText, backgroundColor};
 }
 
 

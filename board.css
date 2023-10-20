@@ -723,6 +723,19 @@ body {
     flex-direction: column;
   }
 
+  /* .bodyAddTaskCotnainer::-webkit-scrollbar {
+  width: 8px;
+}
+
+.bodyAddTaskCotnainer::-webkit-scrollbar-thumb {
+  background-color: rgba(9, 25, 49);
+  border-radius: 5px;
+}
+
+.bodyAddTaskCotnainer::-webkit-scrollbar-track {
+  background-color: rgba(0, 0, 0, 0.05);
+} */
+
   .titleContainer {
     width: 422px;
   }
