@@ -294,6 +294,7 @@ function resetImage(box) {
  */
 function ifcurrentElement(element) {
   element.style.backgroundColor = "";
+  element.style.color = "";
   resetImage(element);
   currentElement = null;
   clickedId = null;
@@ -304,6 +305,7 @@ function ifcurrentElement(element) {
  */
 function ifcurrentElementNull() {
   currentElement.style.backgroundColor = "";
+  currentElement.style.color = "";
   resetImage(currentElement);
 }
 

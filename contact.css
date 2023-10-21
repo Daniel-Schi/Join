@@ -160,6 +160,7 @@ h3 {
 .contact-headline-left {
     font-size: 61px;
     font-weight: 700;
+    margin-left: 20px;
 }
 
 .contact-headline-vertical-line {
@@ -506,6 +507,7 @@ h4 {
 }
 
 @media (max-width: 1300px) {
+
     .contact-list-overview {
         width: 45%;
     }
@@ -526,6 +528,10 @@ h4 {
     .Add-contact {
         font-size: 16px;
         width: 30%;
+    }
+
+    .contact-info {
+        margin-left: 20px;
     }
 
     .form-overdiv {

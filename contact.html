@@ -23,7 +23,7 @@
     <link rel="icon" type="image/svg" href="img/Join-logo.svg">
 </head>
 
-<body onload="includeHTML(); contactInit(); loadLogtinUser();">
+<body onload="includeHTML(); contactInit(); loadLoggedInUser();">
     <div onclick="closeOverdiv()" id="overdiv" class="overdiv">
         <div onclick="doNotClose(event)" class="Add-contact-div">
             <img onclick="closeOverdiv()" class="cancel-overbutton" src="img/WhiteC.svg" alt="">
@@ -66,7 +66,6 @@
     <div class="parent-Container">
         <div class="contact-list-overview" id="contact-list-overview">
             <div class="contact-list" id="contact-list"></div>
-
         </div>
         <button class="new-contact button desktop-only" onclick="openOverdiv('newContactHTML')">
             <span>New Contact</span>

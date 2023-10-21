@@ -1,28 +1,28 @@
-let logtinUser;
+let loggedInUser;
 
-async function loadLogtinUser() {
-  let logtinUserAsString = localStorage.getItem('user');
-  logtinUser = JSON.parse(logtinUserAsString);
+async function loadLoggedInUser() {
+  let loggedInUserAsString = localStorage.getItem('user');
+  loggedInUser = JSON.parse(loggedInUserAsString);
 }
 
 function renderUserProfileHead() {
   let profileDiv = document.getElementById('headProfile');
-  let letters = logtinUser['firstLetter'];
+  let letters = loggedInUser['firstLetter'];
   profileDiv.innerHTML = letters;
-  profileDiv.style.backgroundColor = logtinUser['color'];
+  profileDiv.style.backgroundColor = loggedInUser['color'];
 }
 
 async function renderUserProfile() {
-  await loadLogtinUser(); // Warten, bis logtinUser geladen ist
+  await loadLoggedInUser(); // Warten, bis loggedInUser geladen ist
   let profileDiv = document.getElementById('greeting-user');
-  let name = logtinUser['name'];
+  let name = loggedInUser['name'];
   profileDiv.innerHTML = name;
 }
 
 
 async function renderOverlayProfile() {
-  await loadLogtinUser(); // Warten, bis logtinUser geladen ist
+  await loadLoggedInUser(); // Warten, bis loggedInUser geladen ist
   let profileDiv = document.getElementById('overlayUser');
-  let name = logtinUser['name'];
+  let name = loggedInUser['name'];
   profileDiv.innerHTML = name;
 }

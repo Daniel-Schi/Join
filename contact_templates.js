@@ -8,7 +8,7 @@
  * @param {number} i - The index of the contact in the sortedContacts array.
  * @returns {string} The generated HTML for displaying the contact information.
  */
-function openContactHTML(name,firstandSecoundLetters,email,phone,Letter,i){
+function openContactHTML(name, firstandSecoundLetters, email, phone, Letter, i) {
     return `
         <div class="contact-Name">
             <div style="background-color: ${sortedContacts[`${Letter}`][i]['color']}!important;" id="twoLettersContact" class="profilepicture">${firstandSecoundLetters}</div>
@@ -40,7 +40,7 @@ function openContactHTML(name,firstandSecoundLetters,email,phone,Letter,i){
  * @param {string} letter - The letter to display in the header.
  * @returns {string} The generated HTML for the letter header.
  */
-function letterHTML(letter){
+function letterHTML(letter) {
     return /* html */ `
         <div>
             <h2>${letter}</h2>

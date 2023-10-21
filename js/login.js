@@ -49,7 +49,7 @@ function login(event){
     let email = document.getElementById('email');
     let password = document.getElementById('password');
     let user = users.find(u => u.email == email.value && u.password == password.value);
-    trueOrFalse(email,password,user);
+    handleUserLogin(email,password,user);
 }
 
 function guestLogin(){
@@ -59,7 +59,7 @@ function guestLogin(){
     location.href = "summary.html";
 }
 
-function trueOrFalse(email,password,user){
+function handleUserLogin(email,password,user){
     if(user){
         if(user.email != 'Guest@Guest.de'){
             let userAsString = JSON.stringify(user);

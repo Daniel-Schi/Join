@@ -41,7 +41,7 @@ function closeNewCategory() {
 function prio(elementId, element) {
   if (elementId === "urgent") {
     element.style.backgroundColor = "rgb(255, 61, 0)";
-    // element.style.color = "white";
+    element.style.color = "white";
     element.querySelector("img").src = "img/Prio-urgent-white.png";
   } else if (elementId === "medium") {
     element.style.backgroundColor = "rgb(255, 168, 0)";

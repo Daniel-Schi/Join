@@ -456,7 +456,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 61px 74px 61px 74px;
+  padding: 41px 54px 41px 54px;
   background: #ffffff;
   border-radius: 30px;
   position: absolute;
@@ -604,7 +604,7 @@ body {
   justify-content: flex-end;
 }
 
-  .colorPopupCategoryBox {
+.colorPopupCategoryBox {
     display: flex;
     align-items: center;
     font-size: 21px;
@@ -614,7 +614,6 @@ body {
     color: white;
     cursor: pointer;
 }
-
 
 .editPopupCardCategory {
   display: flex;
@@ -714,27 +713,17 @@ body {
 }
 
 @media (max-width: 1275px) {
+  
   .mainAddTaskContainer {
     left: 24%;
     margin-left: 50px;
     width: 50%;
+    overflow: scroll;
+    height: 85vh ;
   }
   .bodyAddTaskCotnainer {
     flex-direction: column;
   }
-
-  /* .bodyAddTaskCotnainer::-webkit-scrollbar {
-  width: 8px;
-}
-
-.bodyAddTaskCotnainer::-webkit-scrollbar-thumb {
-  background-color: rgba(9, 25, 49);
-  border-radius: 5px;
-}
-
-.bodyAddTaskCotnainer::-webkit-scrollbar-track {
-  background-color: rgba(0, 0, 0, 0.05);
-} */
 
   .titleContainer {
     width: 422px;
@@ -933,7 +922,7 @@ body {
     width: 100%;
     height: 1650px;
     justify-content: flex-start;
-    top: 85px;
+    top: 65px;
     margin: 0px;
   }
 
