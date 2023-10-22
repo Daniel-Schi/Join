@@ -92,8 +92,8 @@ async function SaveUser(i) {
         users[i]['tel'] = phone;
         users[i]['firstLetter'] = firstLetter;
         await setItem('users', JSON.stringify(users));
+        document.getElementById('SaveUserButton').value;
         closeOverdiv();
-        document.getElementById('informationsContacts').innerHTML = '';
         contactInit();
         closeOverdivArrow();
     }

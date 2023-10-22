@@ -75,7 +75,7 @@ function checkPrioPopupCard(task) {
     priorityText = "Low";
     backgroundColor = "rgb(122, 226, 41)";
   }
-  return { priorityImage, priorityText, backgroundColor};
+  return {priorityImage, priorityText, backgroundColor};
 }
 
 
