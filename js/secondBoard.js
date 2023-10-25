@@ -37,17 +37,6 @@ async function showCard(taskId) {
   }
 }
 
-// function setPriorityBackgroundInPopup(priority) {
-//   const popupCardPriorityElement = document.getElementById("popupContainer");
-//   if (priority === "urgent") {
-//     popupCardPriorityElement.style.backgroundColor = "rgb(255, 61, 0)";
-//   } else if (priority === "medium") {
-//     popupCardPriorityElement.style.backgroundColor = "rgb(255, 168, 0)";
-//   } else if (priority === "low") {
-//     popupCardPriorityElement.style.backgroundColor = "rgb(122, 226, 41)";
-//   }
-// }
-
 /**
  * Shows the full card on the main board for a task on smaller screens (width < 769px).
  * @param {number} taskId - The ID of the task to be shown on the main board.
@@ -58,7 +47,6 @@ async function showCardPopup(taskId) {
   let popupCard = document.getElementById("popupContainer");
   let { priorityImage, priorityText, backgroundColor } =
     await checkPrioPopupCard(task);
-    console.log(task);
   let subtask = generateSubtaskHtml(task, taskId);
   let assignedContactsHtml = task.contacts
     .map((contact) => generateInitialsAndFullName(contact))
@@ -66,7 +54,6 @@ async function showCardPopup(taskId) {
   overlayDiv.classList.add("overlay");
   document.body.appendChild(overlayDiv);
   popupCard.innerHTML = generatePopupCardHtml(task,taskId,subtask,backgroundColor,priorityText,priorityImage,assignedContactsHtml);
-  // setPriorityBackgroundInPopup(task.priority);
 }
 
 /**
@@ -97,9 +84,20 @@ async function editPopupCard(taskId) {
   let task = allTasks.find((task) => task.id === taskId);
   let today = new Date();
   let popupCard = document.getElementById("popupContainer");
-  let {priorityImage, priorityText, backgroundColor } = await checkPrioPopupCard(task);
-  popupCard.innerHTML = generateEditPopupCardHtml(task, taskId, today, priorityImage, priorityText, backgroundColor);
+  let wichPrio = await checkPrioPopupCard(task);
+  popupCard.innerHTML = generateEditPopupCardHtml(task, taskId, today);
   renderAllContacts(taskId);
+  checkPrioboxforedit(wichPrio);
+}
+
+function checkPrioboxforedit(wichPrio){
+  if(wichPrio.which == "urgent"){
+    checkpriobox('urgent');
+  }else if(wichPrio.which == "medium"){
+    checkpriobox('medium');
+  }else{
+    checkpriobox('low');
+  }
 }
 
 /**
@@ -110,8 +108,8 @@ async function editShowCard(taskId) {
   let task = allTasks.find((task) => task.id === taskId);
   let today = new Date();
   let showCard = document.getElementById("showCard");
-  let {priorityImage, priorityText, backgroundColor } = await checkPrioPopupCard(task);
-  showCard.innerHTML = generateEditShowCardHtml(task, taskId, today, showCard, priorityImage, priorityText, backgroundColor);
+ await checkPrioPopupCard(task);
+  showCard.innerHTML = generateEditShowCardHtml(task, taskId, today, showCard);
   renderAllContacts(taskId);
 }
 
@@ -307,7 +305,7 @@ function resetImage(box) {
  */
 function ifcurrentElement(element) {
   element.style.backgroundColor = "";
-  element.style.color = "";
+  // element.style.color = "";
   resetImage(element);
   currentElement = null;
   clickedId = null;
@@ -318,7 +316,7 @@ function ifcurrentElement(element) {
  */
 function ifcurrentElementNull() {
   currentElement.style.backgroundColor = "";
-  currentElement.style.color = "";
+  // currentElement.style.color = "";
   resetImage(currentElement);
 }
 

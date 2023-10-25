@@ -262,7 +262,8 @@ h4 {
 }
 
 .form-overdiv {
-    border-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
     display: flex;
     justify-content: center;
     align-items: center;

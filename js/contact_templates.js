@@ -9,7 +9,7 @@
  * @returns {string} The generated HTML for displaying the contact information.
  */
 function openContactHTML(name, firstandSecoundLetters, email, phone, Letter, i) {
-    return `
+    return /*html*/`
         <div class="contact-Name">
             <div style="background-color: ${sortedContacts[`${Letter}`][i]['color']}!important;" id="twoLettersContact" class="profilepicture">${firstandSecoundLetters}</div>
             <div class="showname">
@@ -175,7 +175,7 @@ function generateUserHTML(index) {
  * @returns {string} The generated HTML for displaying the contacts under the letter.
  */
 function contactHTML(letter, index) {
-    return `
+    return /* html */`
         <div>
             <h3>${letterHTML(letter).toUpperCase()}</h3>
             <div class="forh3"></div>

@@ -79,15 +79,15 @@ function generateEditPopupCardHtml(task, taskId, today) {
         <label for="Prio">Prio</label>
         <div class="prioChildContainer">
           <div id="urgent" onclick="checkpriobox('urgent')" class="prioBox">
-            Urgent
+           <span id="urgentSpan">Urgent</span> 
             <img src="img/urgent.svg" data-default-img="img/urgent.svg" alt="Urgent Priority">
           </div>
           <div id="medium" onclick="checkpriobox('medium')" class="prioBox">
-            Medium
+            <span id="mediumSpan">Medium</span>
             <img src="img/medium.svg" data-default-img="img/medium.svg" alt="Medium Priority">
           </div>
           <div id="low" onclick="checkpriobox('low')" class="prioBox">
-            Low
+            <span id="lowSpan">Low</span>
             <img src="img/low.svg" data-default-img="img/low.svg" alt="Low Priority">
           </div>
         </div>

@@ -137,6 +137,7 @@ function createTask(status) {
   if (checkPrioritySelected()) {
     return;
   }
+  console.log(selectedContacts, categoryColor, categoryText);
   let allTask = {
     id: allTasks.length,
     title: title.value,
@@ -149,11 +150,14 @@ function createTask(status) {
     subtask: allSubtask,
     contacts: selectedContacts,
   };
-  showPopup();
-  allTasks.push(allTask);
-  save();
-  allSubtask = [];
-  clearTask();
+  if(selectedContacts != undefined){
+    showPopup();
+    allTasks.push(allTask);
+    save();
+    allSubtask = [];
+    clearTask();
+  }
+  
 }
 
 /**

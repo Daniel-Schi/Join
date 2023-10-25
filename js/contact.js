@@ -86,16 +86,15 @@ async function SaveUser(i) {
     let firstLetter = newLetters(name)
     let email = document.getElementById('email').value;
     let phone = document.getElementById('phone').value;
-    if (email && name && phone != '') {
+    if (email && name && phone !== '') {
         users[i]['name'] = name;
         users[i]['email'] = email;
         users[i]['tel'] = phone;
         users[i]['firstLetter'] = firstLetter;
-        await setItem('users', JSON.stringify(users));
-        document.getElementById('SaveUserButton').value;
+        await setItem('users', JSON.stringify(users)); 
         closeOverdiv();
         contactInit();
-        closeOverdivArrow();
+        closeOverdivArrow();   
     }
 }
 
@@ -271,7 +270,6 @@ function setInformationsForContact(Letter, i) {
     mobileDelButton(email);
 }
 
-
 /**
  * Sorts the firstLetters array alphabetically.
  */
@@ -291,8 +289,8 @@ function closeOverdiv() {
     if (overlayDiv) {
         document.body.removeChild(overlayDiv);
     }
-
 }
+
 /**
  * Closes the contact details view in mobile view.
  */
@@ -313,6 +311,7 @@ function openOverdiv(form) {
     overlayDiv.classList.add("overlay");
     document.body.appendChild(overlayDiv);
 }
+
 /**
  * Prevents closing the overdiv when clicking inside it.
  * @param {Event} event - The click event object.

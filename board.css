@@ -368,6 +368,9 @@ body {
   gap: 10px;
 }
 
+.prioBox span {
+  color: black;
+}
 .popupCardAssigned {
   font-size: 21px;
   height: 15%;

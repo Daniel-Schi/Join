@@ -40,42 +40,107 @@ function closeNewCategory() {
  */
 function prio(elementId, element) {
   if (elementId === "urgent") {
-    element.style.backgroundColor = "rgb(255, 61, 0)";
-    element.style.color = "white";
-    element.querySelector("img").src = "img/Prio-urgent-white.png";
+    urgentColorInfo(element);
+    document.getElementById('mediumSpan').style = '';
+    document.getElementById('lowSpan').style = '';
   } else if (elementId === "medium") {
-    element.style.backgroundColor = "rgb(255, 168, 0)";
-    element.style.color = "white";
-    element.querySelector("img").src = "img/Prio-medium-white.png";
+    document.getElementById('urgentSpan').style = '';
+    document.getElementById('lowSpan').style = '';
+    mediumColorInfo(element);
   } else if (elementId === "low") {
-    element.style.backgroundColor = "rgb(122, 226, 41)";
-    element.style.color = "white";
-    element.querySelector("img").src = "img/Prio-low-white.png";
+    document.getElementById('urgentSpan').style = '';
+    document.getElementById('mediumSpan').style = '';
+    lowColorInfo(element);
   }
 }
 
+/**
+ * Sets the color and background properties for specified elements to represent a urgent priority.
+ * 
+ * @param {HTMLElement} element - The element to highlight with urgent priority colors.
+ */
+function urgentColorInfo(element) {
+  // let doNotShow1 = document.getElementById('medium');
+  // let doNotShow2 = document.getElementById('low');
+  // doNotShow1.style.backgroundColor = "white";
+  // doNotShow1.style.color = "black";
+  // doNotShow1.querySelector("img").src = "img/medium.svg";
+  // doNotShow2.style.backgroundColor = "white";
+  // doNotShow2.style.color = "black";
+  // doNotShow2.querySelector("img").src = "img/low.svg";
+  element.style.backgroundColor = "rgb(255, 61, 0)";
+  element.style.color = "black";
+  element.querySelector("img").src = "img/Prio-urgent-white.png";
+  element.querySelector("span").style.color = "white";
+}
+
+/**
+ * Sets the color and background properties for specified elements to represent a medium priority.
+ * 
+ * @param {HTMLElement} element - The element to highlight with medium priority colors.
+ */
+function mediumColorInfo(element) {
+  // let doNotShow1 = document.getElementById('urgent');
+  // let doNotShow2 = document.getElementById('low');
+  // doNotShow1.style.backgroundColor = "white";
+  // doNotShow1.style.color = "black";
+  // doNotShow1.querySelector("img").src = "img/urgent.svg";
+  // doNotShow2.style.backgroundColor = "white";
+  // doNotShow2.style.color = "black";
+  // doNotShow2.querySelector("img").src = "img/low.svg";
+  element.style.backgroundColor = "rgb(255, 168, 0)";
+  element.style.color = "black";
+  element.querySelector("img").src = "img/Prio-medium-white.png";
+  element.querySelector("span").style.color = "white";
+}
+
+/**
+ * Sets the color and background properties for specified elements to represent a low priority.
+ * 
+ * @param {HTMLElement} element - The element to highlight with low priority colors.
+ */
+function lowColorInfo(element) {
+  // let doNotShow1 = document.getElementById('urgent');
+  // let doNotShow2 = document.getElementById('medium');
+  // doNotShow1.style.backgroundColor = "white";
+  // doNotShow1.style.color = "black";
+  // doNotShow1.querySelector("img").src = "img/urgent.svg";
+  // doNotShow2.style.backgroundColor = "white";
+  // doNotShow2.style.color = "black";
+  // doNotShow2.querySelector("img").src = "img/medium.svg";
+  element.style.backgroundColor = "rgb(122, 226, 41)";
+  element.style.color = "black";
+  element.querySelector("img").src = "img/Prio-low-white.png";
+  element.querySelector("span").style.color = "white";
+}
 
 /**
  * Checks the priority of a task and returns relevant information for the popup card.
  * @param {Object} task - The task object.
  * @returns {Object} An object containing the priority information.
  */
-function checkPrioPopupCard(task) {
-  let priorityImage, priorityText, backgroundColor;
+async function checkPrioPopupCard(task) {
+  let priorityImage, priorityText, backgroundColor, color, which;
   if (task.priority === "urgent") {
     priorityImage = "img/Prio-urgent-white.png";
     priorityText = "Urgent";
     backgroundColor = "rgb(255, 61, 0)";
+    color = "white";
+    which = 'urgent';
   } else if (task.priority === "medium") {
     priorityImage = "img/Prio-medium-white.png";
     priorityText = "Medium";
     backgroundColor = "rgb(255, 168, 0)";
+    color = "white";
+    which = 'medium';
   } else {
     priorityImage = "img/Prio-low-white.png";
     priorityText = "Low";
     backgroundColor = "rgb(122, 226, 41)";
+    color = "white";
+    which = 'low';
   }
-  return {priorityImage, priorityText, backgroundColor};
+  return { priorityImage, priorityText, backgroundColor, color, which };
 }
 
 
@@ -194,7 +259,7 @@ function saveSelectedContact(index) {
  * @param {HTMLElement} newCategoryContainer - The new category container element.
  * @param {HTMLElement} categoryColors - The category colors element.
  */
-function newCategoryClass(categoryContainer,newCategoryContainer,categoryColors) {
+function newCategoryClass(categoryContainer, newCategoryContainer, categoryColors) {
   categoryContainer.classList.add("d-none");
   newCategoryContainer.classList.remove("d-none");
   categoryColors.classList.remove("d-none");
@@ -219,6 +284,27 @@ function checkpriobox(elementId) {
     clickedId = elementId;
   }
 }
+
+// function checkpriobox(elementId) {
+//   let element = document.getElementById(elementId);
+//   if (currentElement === element) {
+//     // Wenn auf dieselbe Priorität geklickt wird, erfolgt keine Änderung
+//     return;
+//   }
+
+//   // Das Bild der aktuellen Auswahl auf den angeklickten Zustandspfad ändern
+//   prio(elementId, element);
+
+//   // Das Bild des vorherigen Elements auf seinen ursprünglichen Pfad zurücksetzen
+//   if (currentElement) {
+//     const previousId = currentElement.id;
+//     const originalImagePath = document.getElementById(previousId).querySelector("img").getAttribute("data-default-img");
+//     document.getElementById(previousId).querySelector("img").src = originalImagePath;
+//   }
+
+//   currentElement = element;
+//   clickedId = elementId;
+// }
 
 /**
  * Sets the popup category card with available category options.
@@ -383,13 +469,14 @@ function getSelectedContacts() {
     let errorMessage = document.getElementById("assigned-error");
     errorMessage.textContent = "Please select at least one contact.";
     errorMessage.style.color = "red";
+    return;
+  } else {
+    checkboxes.forEach((checkbox) => {
+      let contactId = checkbox.id.replace("contact", "");
+      selectedContacts.push(allContacts[contactId]);
+    });
     return selectedContacts;
   }
-  checkboxes.forEach((checkbox) => {
-    let contactId = checkbox.id.replace("contact", "");
-    selectedContacts.push(allContacts[contactId]);
-  });
-  return selectedContacts;
 }
 
 /**
