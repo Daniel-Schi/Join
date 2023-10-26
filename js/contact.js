@@ -91,10 +91,11 @@ async function SaveUser(i) {
         users[i]['email'] = email;
         users[i]['tel'] = phone;
         users[i]['firstLetter'] = firstLetter;
-        await setItem('users', JSON.stringify(users)); 
+        document.getElementById('informationsContacts').value;
+        await setItem('users', JSON.stringify(users));
         closeOverdiv();
         contactInit();
-        closeOverdivArrow();   
+        closeOverdivArrow();
     }
 }
 
@@ -171,11 +172,9 @@ function loadContactForm(form, email) {
 function hover() {
     let image = document.getElementById('Cancel');
     let hoverTrigger = document.querySelector('.cancelButton');
-
     hoverTrigger.addEventListener('mouseenter', function () {
         image.src = ' img/BlueCancel.svg';
     });
-
     hoverTrigger.addEventListener('mouseleave', function () {
         image.src = 'img/cancel.svg';
     });
@@ -247,11 +246,11 @@ function isWindowBelowWidth(width) {
  * @param {string} Letter - The letter corresponding to the contact's name.
  * @param {number} i - The index of the contact in the sortedContacts array.
  */
-function openContact(Letter, i) {
+function openContact(Letter, i, index) {
     if (!isWindowBelowWidth(1160)) {
-        setInformationsForContact(Letter, i);
+        setInformationsForContact(Letter, i, index);
     } else {
-        setInformationsForContact(Letter, i);
+        setInformationsForContact(Letter, i, index);
         document.getElementById('contact-info-container').classList.replace('contact-info-container', 'contact-info-container-new');
     }
 }
@@ -261,13 +260,23 @@ function openContact(Letter, i) {
  * @param {string} Letter - The letter corresponding to the contact's name.
  * @param {number} i - The index of the contact in the sortedContacts array.
  */
-function setInformationsForContact(Letter, i) {
+function setInformationsForContact(Letter, i, index) {
+    wipeActivContact();
     let name = sortedContacts[`${Letter}`][i]['name'];
     let firstandSecoundLetters = sortedContacts[`${Letter}`][i]['firstLetter'];
     let email = sortedContacts[`${Letter}`][i]['email'];
     let phone = sortedContacts[`${Letter}`][i]['tel'];
     document.getElementById('informationsContacts').innerHTML = openContactHTML(name, firstandSecoundLetters, email, phone, Letter, i);
+    document.getElementById('contact' + index).classList.add('activ');
     mobileDelButton(email);
+}
+
+function wipeActivContact() {
+    for (let i = 0; i < users.length; i++) {
+        if (document.querySelector('.activ')) {
+            document.getElementById(`contact${i}`).classList.remove('activ');
+        }
+    }
 }
 
 /**

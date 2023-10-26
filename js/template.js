@@ -478,3 +478,48 @@ function forgotMyPasswordHTML() {
 </div>
 `;
 }
+
+/**
+ * Generates the HTML for a subtask element in the popup card.
+ * @param {string} checkboxId - The ID of the subtask checkbox.
+ * @param {string} checkedAttribute - The "checked" attribute for the checkbox.
+ * @param {number} taskId - The ID of the task associated with the subtask.
+ * @param {number} i - The index of the subtask.
+ * @param {Object} task - The task object containing subtask information.
+ * @returns {string} The HTML code for the subtask element.
+ */
+function SubtaskHTMLgerate(checkboxId, checkedAttribute, taskId, i, task) {
+  return `
+    <div class="popupCardSubItem">
+      <input type="checkbox" class="popupCardCheckbox" id="${checkboxId}" ${checkedAttribute} onclick="updateProgress(${taskId}, ${i})">
+      <span class="popupCardSubtask">${task.subtask[i]}</span>
+    </div>
+  `;
+}
+
+/**
+ * Changes the subtask images in the HTML.
+ */
+function changeSubImg() {
+  document.getElementById("subImgContainer").innerHTML = `<div class="subImgContainer">
+    <img onclick="closeSubImg()" src="img/iconoir_cancel_black.svg">
+    <div class="searchBarLine"></div>
+    <img onclick="addSubtask()" id="subImg" src="img/akar-icons_check_black.svg">
+  </div>`;
+}
+
+/**
+ * Generates the HTML for the progress bar in a card.
+ * @param {number} progress - The progress value (0-100).
+ * @param {number} completedSubtasks - The number of completed subtasks.
+ * @param {number} totalSubtasks - The total number of subtasks.
+ * @returns {string} The HTML code for the progress bar.
+ */
+function generateProgressHTML(progress, completedSubtasks, totalSubtasks) {
+  return `
+  <div class="progressBarContainer" id="progressBarContainer">
+    <div class="cardProgress"><progress value="${progress}" max="100"></progress></div>
+    <div class="checkboxCount">${completedSubtasks}/${totalSubtasks} Done</div>
+  </div>
+`;
+}

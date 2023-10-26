@@ -53,6 +53,3 @@ function back(){
     document.getElementById('navbar').classList.remove('d-none');
     render();
 }
-
-
-

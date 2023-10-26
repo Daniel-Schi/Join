@@ -21,3 +21,13 @@ async function getItem(key) {
         } throw `Could not find data with key "${key}".`;
     });
 }
+
+function setActiv(page) {
+    let pages = ['addTask', 'contact', 'board', 'legal', 'summary'];
+    pages.forEach(page => {
+        if(document.querySelector('.navActiv')) {
+            document.getElementById(page).classList.remove('navActiv');
+        }
+    });
+    document.getElementById(page).classList.add('navActiv');
+}

@@ -153,7 +153,7 @@ function generateUserHTML(index) {
     
     for (let i = 0; i < sortedContacts[indexLetter].length; i++) {
         html += /* html */`
-            <div onclick="openContact('${indexLetter}', ${i})" class="profile-div">
+            <div onclick="openContact('${indexLetter}', ${i}, ${index})" class="profile-div">
                 <div style="background-color: ${sortedContacts[indexLetter][i]['color']}!important" class="profilePicture">
                     ${sortedContacts[indexLetter][i]['firstLetter']}
                 </div>

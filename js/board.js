@@ -60,7 +60,7 @@ loadUsers();
 /**
  * Includes the HTML templates and renders the user profile header.
  */
-async function includeHTML() {
+async function includeHTML(page) {
   let includeElements = document.querySelectorAll("[w3-include-html]");
   for (let i = 0; i < includeElements.length; i++) {
     const element = includeElements[i];
@@ -70,9 +70,10 @@ async function includeHTML() {
       element.innerHTML = await resp.text();
     } else {
       element.innerHTML = "Page not found";
-    }
+    }     
   }
   renderUserProfileHead();
+  setActiv(page);
 }
 /**
  * Renders the board cards by status on the board page.

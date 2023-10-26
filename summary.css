@@ -42,7 +42,7 @@ h1 {
   display: none;
 }
 
-h4 {
+.saying {
   align-items: center;
   display: flex;
   width: 306px;

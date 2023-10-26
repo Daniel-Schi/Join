@@ -46,7 +46,6 @@ function countTaskStatuses() {
 
   for (let i = 0; i < allTasks.length; i++) {
     const task = allTasks[i];
-
     switch (task.status) {
       case "todo":
         todoCount++;
@@ -61,12 +60,10 @@ function countTaskStatuses() {
         doneCount++;
         break;
     }
-
     if (task.priority === "urgent") {
       urgentCount++;
     }
   }
-
   renderSummaryCards(
     totalCount,
     todoCount,
@@ -150,11 +147,9 @@ async function setDate() {
     .map((t) => new Date(t.date))
     .filter((d) => !isNaN(d.getTime()))
     .sort((a, b) => a.getTime() - b.getTime());
-
   if (sortedUrgentTasks.length === 0) {
     return;
   }
-
   let closestDate = sortedUrgentTasks.reduce((a, b) =>
     Math.abs(b - new Date()) < Math.abs(a - new Date()) ? b : a
   );
@@ -163,7 +158,6 @@ async function setDate() {
     day: "2-digit",
     year: "numeric",
   });
-
   document.getElementById("date").innerHTML = `${closestDateString}`;
 }
 
@@ -175,7 +169,6 @@ function changeGreetingName() {
   let nameFromCookie = cookieValue
     .split(";")
     .find((cookie) => cookie.includes("users="));
-
   showsGreetingName(nameFromCookie);
 }
 
@@ -192,7 +185,6 @@ function showsGreetingName(nameFromCookie) {
     const selectedUser = users.find(
       (user) => user.name.toLowerCase().replace(" ", "") === nameCookieFormatted
     );
-
     document.getElementById("greeting-user").innerHTML = selectedUser.name;
     //    document.getElementById('overlay').innerHTML = selectedUser.name;
   }

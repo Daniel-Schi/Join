@@ -41,15 +41,9 @@ function closeNewCategory() {
 function prio(elementId, element) {
   if (elementId === "urgent") {
     urgentColorInfo(element);
-    document.getElementById('mediumSpan').style = '';
-    document.getElementById('lowSpan').style = '';
   } else if (elementId === "medium") {
-    document.getElementById('urgentSpan').style = '';
-    document.getElementById('lowSpan').style = '';
     mediumColorInfo(element);
   } else if (elementId === "low") {
-    document.getElementById('urgentSpan').style = '';
-    document.getElementById('mediumSpan').style = '';
     lowColorInfo(element);
   }
 }
@@ -60,18 +54,12 @@ function prio(elementId, element) {
  * @param {HTMLElement} element - The element to highlight with urgent priority colors.
  */
 function urgentColorInfo(element) {
-  // let doNotShow1 = document.getElementById('medium');
-  // let doNotShow2 = document.getElementById('low');
-  // doNotShow1.style.backgroundColor = "white";
-  // doNotShow1.style.color = "black";
-  // doNotShow1.querySelector("img").src = "img/medium.svg";
-  // doNotShow2.style.backgroundColor = "white";
-  // doNotShow2.style.color = "black";
-  // doNotShow2.querySelector("img").src = "img/low.svg";
   element.style.backgroundColor = "rgb(255, 61, 0)";
   element.style.color = "black";
   element.querySelector("img").src = "img/Prio-urgent-white.png";
   element.querySelector("span").style.color = "white";
+  document.getElementById('mediumSpan').style = '';
+  document.getElementById('lowSpan').style = '';
 }
 
 /**
@@ -80,18 +68,12 @@ function urgentColorInfo(element) {
  * @param {HTMLElement} element - The element to highlight with medium priority colors.
  */
 function mediumColorInfo(element) {
-  // let doNotShow1 = document.getElementById('urgent');
-  // let doNotShow2 = document.getElementById('low');
-  // doNotShow1.style.backgroundColor = "white";
-  // doNotShow1.style.color = "black";
-  // doNotShow1.querySelector("img").src = "img/urgent.svg";
-  // doNotShow2.style.backgroundColor = "white";
-  // doNotShow2.style.color = "black";
-  // doNotShow2.querySelector("img").src = "img/low.svg";
   element.style.backgroundColor = "rgb(255, 168, 0)";
   element.style.color = "black";
   element.querySelector("img").src = "img/Prio-medium-white.png";
   element.querySelector("span").style.color = "white";
+  document.getElementById('urgentSpan').style = '';
+  document.getElementById('lowSpan').style = '';
 }
 
 /**
@@ -100,18 +82,12 @@ function mediumColorInfo(element) {
  * @param {HTMLElement} element - The element to highlight with low priority colors.
  */
 function lowColorInfo(element) {
-  // let doNotShow1 = document.getElementById('urgent');
-  // let doNotShow2 = document.getElementById('medium');
-  // doNotShow1.style.backgroundColor = "white";
-  // doNotShow1.style.color = "black";
-  // doNotShow1.querySelector("img").src = "img/urgent.svg";
-  // doNotShow2.style.backgroundColor = "white";
-  // doNotShow2.style.color = "black";
-  // doNotShow2.querySelector("img").src = "img/medium.svg";
   element.style.backgroundColor = "rgb(122, 226, 41)";
   element.style.color = "black";
   element.querySelector("img").src = "img/Prio-low-white.png";
   element.querySelector("span").style.color = "white";
+  document.getElementById('urgentSpan').style = '';
+  document.getElementById('mediumSpan').style = '';
 }
 
 /**
@@ -266,6 +242,7 @@ function newCategoryClass(categoryContainer, newCategoryContainer, categoryColor
   categoryColors.classList.add("colorsContainer");
   document.getElementById("newCategoryContainer").innerHTML = newCategoryHtml();
 }
+
 /**
  * Checks if the current element matches the specified element and resets it if true.
  * If not, resets the current element and sets the new element as the current element.
@@ -285,27 +262,6 @@ function checkpriobox(elementId) {
   }
 }
 
-// function checkpriobox(elementId) {
-//   let element = document.getElementById(elementId);
-//   if (currentElement === element) {
-//     // Wenn auf dieselbe Priorität geklickt wird, erfolgt keine Änderung
-//     return;
-//   }
-
-//   // Das Bild der aktuellen Auswahl auf den angeklickten Zustandspfad ändern
-//   prio(elementId, element);
-
-//   // Das Bild des vorherigen Elements auf seinen ursprünglichen Pfad zurücksetzen
-//   if (currentElement) {
-//     const previousId = currentElement.id;
-//     const originalImagePath = document.getElementById(previousId).querySelector("img").getAttribute("data-default-img");
-//     document.getElementById(previousId).querySelector("img").src = originalImagePath;
-//   }
-
-//   currentElement = element;
-//   clickedId = elementId;
-// }
-
 /**
  * Sets the popup category card with available category options.
  */
@@ -320,35 +276,6 @@ function setPopupCategoryCard() {
     const color = allCategory[i].color;
     popupCategoryBox.innerHTML += `<div class="colorPopupCategoryBox" style="background-color:${color}" onclick="selectPopupCategory(${i})" id="selectPopupCategory${i}"><div id="categoryPopupText">${category}</div><div class="selectColorBox" id="selectColorBox" style="background-color:${color};"></div></div>`;
   }
-}
-
-/**
- * Generates the HTML for a subtask element in the popup card.
- * @param {string} checkboxId - The ID of the subtask checkbox.
- * @param {string} checkedAttribute - The "checked" attribute for the checkbox.
- * @param {number} taskId - The ID of the task associated with the subtask.
- * @param {number} i - The index of the subtask.
- * @param {Object} task - The task object containing subtask information.
- * @returns {string} The HTML code for the subtask element.
- */
-function SubtaskHTMLgerate(checkboxId, checkedAttribute, taskId, i, task) {
-  return `
-    <div class="popupCardSubItem">
-      <input type="checkbox" class="popupCardCheckbox" id="${checkboxId}" ${checkedAttribute} onclick="updateProgress(${taskId}, ${i})">
-      <span class="popupCardSubtask">${task.subtask[i]}</span>
-    </div>
-  `;
-}
-
-/**
- * Changes the subtask images in the HTML.
- */
-function changeSubImg() {
-  document.getElementById("subImgContainer").innerHTML = `<div class="subImgContainer">
-    <img onclick="closeSubImg()" src="img/iconoir_cancel_black.svg">
-    <div class="searchBarLine"></div>
-    <img onclick="addSubtask()" id="subImg" src="img/akar-icons_check_black.svg">
-  </div>`;
 }
 
 /**
@@ -443,21 +370,6 @@ function newCategory() {
   newCategoryClass(categoryContainer, newCategoryContainer, categoryColors);
 }
 
-/**
- * Generates the HTML for the progress bar in a card.
- * @param {number} progress - The progress value (0-100).
- * @param {number} completedSubtasks - The number of completed subtasks.
- * @param {number} totalSubtasks - The total number of subtasks.
- * @returns {string} The HTML code for the progress bar.
- */
-function generateProgressHTML(progress, completedSubtasks, totalSubtasks) {
-  return `
-  <div class="progressBarContainer" id="progressBarContainer">
-    <div class="cardProgress"><progress value="${progress}" max="100"></progress></div>
-    <div class="checkboxCount">${completedSubtasks}/${totalSubtasks} Done</div>
-  </div>
-`;
-}
 /**
  * Gets the selected contacts for a task based on checkboxes and returns them as an array.
  * @returns {Array<Object>} An array of selected contact objects.
