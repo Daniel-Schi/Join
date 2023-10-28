@@ -8,7 +8,7 @@ async function setItem(key, value) {
     const payload = { key, value, token: STORAGE_TOKEN };
     return await fetch(STORAGE_URL, { method: 'POST', body: JSON.stringify(payload)})
     .then(res => res.json());
-}
+ }
 
 /**
  * Retrieves a value from the remote storage using the specified key.

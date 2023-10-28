@@ -66,8 +66,8 @@ function showCardMainBoard(taskId) {
   let task = allTasks.find((task) => task.id === taskId);
   let showMainBoardContainer = document.getElementById("showMainBoardContainer");
   let mainBoardContainer = document.getElementById("mainBoardContainer");
-  let Image = CheckImagePrioagain(task);
-  let Text = CheckTextPrioagain(task);
+  let Image = checkImagePrioagain(task);
+  let Text = checkTextPrioagain(task);
   let { priorityImage, priorityText, backgroundColor } =
     checkPrioPopupCard(task);
   let subtask = generateSubtaskHtml(task, taskId);
@@ -80,24 +80,9 @@ function showCardMainBoard(taskId) {
 
 /**
  * @param {Task} task 
- * @returns Backgroundcolor 
- */
-function CheckBackgroundPrioagain(task){
-  if (task.priority === "urgent") {
-    priorityB = "rgb(255, 61, 0)";;
-  } else if (task.priority === "medium") {
-    priorityB = "rgb(255, 168, 0)";
-  } else {
-    priorityB = "rgb(122, 226, 41)";
-  }
-  return priorityB;
-}
-
-/**
- * @param {Task} task 
  * @returns Text
  */
-function CheckTextPrioagain(task){
+function checkTextPrioagain(task){
   if (task.priority === "urgent") {
     priorityText = "Urgent";
   } else if (task.priority === "medium") {
@@ -106,6 +91,17 @@ function CheckTextPrioagain(task){
     priorityText = "Low";
   }
   return priorityText;
+}
+
+function checkImagePrioagain(task){
+  if (task.priority === "urgent") {
+    priorityImage = "img/Prio-urgent-white.png";
+  } else if (task.priority === "medium") {
+    priorityImage = "img/Prio-medium-white.png";
+  } else {
+    priorityImage = "img/Prio-low-white.png";
+  }
+  return priorityImage;
 }
 
 /**
