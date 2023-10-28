@@ -76,7 +76,7 @@ function newLetters(inputname) {
     }
     return initials;
 }
-
+let index = 0;
 /**
  * Saves the edited user information back to the users array.
  * @param {number} i - The index of the contact in the users array.
@@ -91,8 +91,10 @@ async function SaveUser(i) {
         users[i]['email'] = email;
         users[i]['tel'] = phone;
         users[i]['firstLetter'] = firstLetter;
+        let letter = firstLetter.charAt(0);
         document.getElementById('informationsContacts').value;
         await setItem('users', JSON.stringify(users));
+        openContact(letter, i, 0);
         closeOverdiv();
         contactInit();
         closeOverdivArrow();
@@ -214,10 +216,11 @@ function firstLettersForContact() {
  * @param {number} index - The index of the letter in the firstLetters array.
  */
 function renderUser(index) {
-    let div = document.getElementById(`contact${index}`);
-    div.classList.add('ContactHover');
-    div.innerHTML = '';
-    div.innerHTML = generateUserHTML(index);
+    let div = document.getElementById(`contact${index}`);{   
+        div.classList.add('ContactHover');
+        div.innerHTML = '';
+        div.innerHTML = generateUserHTML(index);   
+    }
 }
 
 /**
@@ -267,7 +270,7 @@ function setInformationsForContact(Letter, i, index) {
     let email = sortedContacts[`${Letter}`][i]['email'];
     let phone = sortedContacts[`${Letter}`][i]['tel'];
     document.getElementById('informationsContacts').innerHTML = openContactHTML(name, firstandSecoundLetters, email, phone, Letter, i);
-    document.getElementById('contact' + index).classList.add('activ');
+    document.getElementById(`contact` + index).classList.add('activ');
     mobileDelButton(email);
 }
 
