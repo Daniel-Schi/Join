@@ -83,21 +83,66 @@ let index = 0;
  */
 async function SaveUser(i) {
     let name = document.getElementById('name').value;
-    let firstLetter = newLetters(name)
+    let firstLetter = newLetters(name);
     let email = document.getElementById('email').value;
     let phone = document.getElementById('phone').value;
-    if (email && name && phone !== '') {
+
+    if (email && name && phone != '') {
         users[i]['name'] = name;
         users[i]['email'] = email;
         users[i]['tel'] = phone;
         users[i]['firstLetter'] = firstLetter;
-        let letter = firstLetter.charAt(0);
-        document.getElementById('informationsContacts').value;
         await setItem('users', JSON.stringify(users));
-        openContact(letter, i, 0);
+        renderAllContacts();
         closeOverdiv();
         contactInit();
         closeOverdivArrow();
+    }
+    return false;
+}
+
+/**
+ * Renders contact information by searching for a contact with a matching email
+ * and setting information for the found contact using the setInformationsForContact function.
+ * @returns {void}
+ */
+function renderAllContacts() {
+    for (const letter in sortedContacts) {
+        for (let i = 0; i < sortedContacts[letter].length; i++) {
+            const currentContact = sortedContacts[letter][i];
+            const currentLetter = letter;
+            const currentIndex = i;
+            if (currentContact.email === document.getElementById('email').value) {
+                setInformationsForContact(currentLetter, currentIndex);
+                break;
+            }
+        }
+    }
+}
+
+/**
+ * Sets the contact details information in the contact details view.
+ * @param {string} Letter - The letter corresponding to the contact's name.
+ * @param {number} i - The index of the contact in the sortedContacts array.
+ */
+function setInformationsForContact(Letter, i) {
+    wipeActivContact();
+    if (sortedContacts[Letter] && i >= 0 && i < sortedContacts[Letter].length) {
+        let name = sortedContacts[Letter][i]['name'];
+        let firstandSecoundLetters = sortedContacts[Letter][i]['firstLetter'];
+        let email = sortedContacts[Letter][i]['email'];
+        let phone = sortedContacts[Letter][i]['tel'];
+        document.getElementById('informationsContacts').innerHTML = openContactHTML(name, firstandSecoundLetters, email, phone, Letter, i);
+        document.getElementById(`contact` + index).classList.add('activ');
+        mobileDelButton(email);
+    }
+}
+
+function wipeActivContact() {
+    for (let i = 0; i < users.length; i++) {
+        if (document.querySelector('.activ')) {
+            document.getElementById(`contact${i}`).classList.remove('activ');
+        }
     }
 }
 
@@ -216,10 +261,10 @@ function firstLettersForContact() {
  * @param {number} index - The index of the letter in the firstLetters array.
  */
 function renderUser(index) {
-    let div = document.getElementById(`contact${index}`);{   
+    let div = document.getElementById(`contact${index}`); {
         div.classList.add('ContactHover');
         div.innerHTML = '';
-        div.innerHTML = generateUserHTML(index);   
+        div.innerHTML = generateUserHTML(index);
     }
 }
 
@@ -255,30 +300,6 @@ function openContact(Letter, i, index) {
     } else {
         setInformationsForContact(Letter, i, index);
         document.getElementById('contact-info-container').classList.replace('contact-info-container', 'contact-info-container-new');
-    }
-}
-
-/**
- * Sets the contact details information in the contact details view.
- * @param {string} Letter - The letter corresponding to the contact's name.
- * @param {number} i - The index of the contact in the sortedContacts array.
- */
-function setInformationsForContact(Letter, i, index) {
-    wipeActivContact();
-    let name = sortedContacts[`${Letter}`][i]['name'];
-    let firstandSecoundLetters = sortedContacts[`${Letter}`][i]['firstLetter'];
-    let email = sortedContacts[`${Letter}`][i]['email'];
-    let phone = sortedContacts[`${Letter}`][i]['tel'];
-    document.getElementById('informationsContacts').innerHTML = openContactHTML(name, firstandSecoundLetters, email, phone, Letter, i);
-    document.getElementById(`contact` + index).classList.add('activ');
-    mobileDelButton(email);
-}
-
-function wipeActivContact() {
-    for (let i = 0; i < users.length; i++) {
-        if (document.querySelector('.activ')) {
-            document.getElementById(`contact${i}`).classList.remove('activ');
-        }
     }
 }
 
