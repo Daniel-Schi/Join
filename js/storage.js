@@ -29,5 +29,8 @@ function setActiv(page) {
             document.getElementById(page).classList.remove('navActiv');
         }
     });
-    document.getElementById(page).classList.add('navActiv');
+    const selectedElement = document.getElementById(page);
+    if (selectedElement) {
+        selectedElement.classList.add('navActiv');
+    }
 }
