@@ -86,14 +86,13 @@ async function SaveUser(i) {
     let firstLetter = newLetters(name);
     let email = document.getElementById('email').value;
     let phone = document.getElementById('phone').value;
-
     if (email && name && phone != '') {
         users[i]['name'] = name;
         users[i]['email'] = email;
         users[i]['tel'] = phone;
         users[i]['firstLetter'] = firstLetter;
         await setItem('users', JSON.stringify(users));
-        renderAllContacts();
+        renderAllContactsforEmail();
         closeOverdiv();
         contactInit();
         closeOverdivArrow();
@@ -106,7 +105,7 @@ async function SaveUser(i) {
  * and setting information for the found contact using the setInformationsForContact function.
  * @returns {void}
  */
-function renderAllContacts() {
+function renderAllContactsforEmail() {
     for (const letter in sortedContacts) {
         for (let i = 0; i < sortedContacts[letter].length; i++) {
             const currentContact = sortedContacts[letter][i];
@@ -126,23 +125,13 @@ function renderAllContacts() {
  * @param {number} i - The index of the contact in the sortedContacts array.
  */
 function setInformationsForContact(Letter, i) {
-    wipeActivContact();
     if (sortedContacts[Letter] && i >= 0 && i < sortedContacts[Letter].length) {
         let name = sortedContacts[Letter][i]['name'];
         let firstandSecoundLetters = sortedContacts[Letter][i]['firstLetter'];
         let email = sortedContacts[Letter][i]['email'];
         let phone = sortedContacts[Letter][i]['tel'];
         document.getElementById('informationsContacts').innerHTML = openContactHTML(name, firstandSecoundLetters, email, phone, Letter, i);
-        document.getElementById(`contact` + index).classList.add('activ');
         mobileDelButton(email);
-    }
-}
-
-function wipeActivContact() {
-    for (let i = 0; i < users.length; i++) {
-        if (document.querySelector('.activ')) {
-            document.getElementById(`contact${i}`).classList.remove('activ');
-        }
     }
 }
 

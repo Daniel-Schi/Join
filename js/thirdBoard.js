@@ -38,56 +38,17 @@ function closeNewCategory() {
  * @param {string} elementId - The ID of the priority element.
  * @param {HTMLElement} element - The priority element.
  */
-function prio(elementId, element) {
+function prio(elementId,element){
   if (elementId === "urgent") {
-    urgentColorInfo(element);
+    element.style.backgroundColor = "rgb(255, 61, 0)";
+    element.querySelector("img").src = "img/Prio-urgent-white.png";
   } else if (elementId === "medium") {
-    mediumColorInfo(element);
+    element.style.backgroundColor = "rgb(255, 168, 0)";
+    element.querySelector("img").src = "img/Prio-medium-white.png";
   } else if (elementId === "low") {
-    lowColorInfo(element);
+    element.style.backgroundColor = "rgb(122, 226, 41)";
+    element.querySelector("img").src = "img/Prio-low-white.png";
   }
-}
-
-/**
- * Sets the color and background properties for specified elements to represent a urgent priority.
- * 
- * @param {HTMLElement} element - The element to highlight with urgent priority colors.
- */
-function urgentColorInfo(element) {
-  element.style.backgroundColor = "rgb(255, 61, 0)";
-  element.style.color = "black";
-  element.querySelector("img").src = "img/Prio-urgent-white.png";
-  element.querySelector("span").style.color = "white";
-  document.getElementById('mediumSpan').style = '';
-  document.getElementById('lowSpan').style = '';
-}
-
-/**
- * Sets the color and background properties for specified elements to represent a medium priority.
- * 
- * @param {HTMLElement} element - The element to highlight with medium priority colors.
- */
-function mediumColorInfo(element) {
-  element.style.backgroundColor = "rgb(255, 168, 0)";
-  element.style.color = "black";
-  element.querySelector("img").src = "img/Prio-medium-white.png";
-  element.querySelector("span").style.color = "white";
-  document.getElementById('urgentSpan').style = '';
-  document.getElementById('lowSpan').style = '';
-}
-
-/**
- * Sets the color and background properties for specified elements to represent a low priority.
- * 
- * @param {HTMLElement} element - The element to highlight with low priority colors.
- */
-function lowColorInfo(element) {
-  element.style.backgroundColor = "rgb(122, 226, 41)";
-  element.style.color = "black";
-  element.querySelector("img").src = "img/Prio-low-white.png";
-  element.querySelector("span").style.color = "white";
-  document.getElementById('urgentSpan').style = '';
-  document.getElementById('mediumSpan').style = '';
 }
 
 /**

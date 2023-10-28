@@ -138,19 +138,9 @@ function createTask(status) {
   if (checkPrioritySelected()) {
     return;
   }
-  console.log(selectedContacts, categoryColor, categoryText);
-  let allTask = {
-    id: allTasks.length,
-    title: title.value,
-    description: description.value,
-    categoryText: categoryText.innerHTML,
-    categoryColor: categoryColor.style.backgroundColor,
-    date: date.value,
-    priority: priority,
-    status: status,
-    subtask: allSubtask,
-    contacts: selectedContacts,
-  };
+  let allTask = {id: allTasks.length, title: title.value, description: description.value, categoryText: categoryText.innerHTML,
+    categoryColor: categoryColor.style.backgroundColor, date: date.value, priority: priority, status: status, subtask: allSubtask,
+    contacts: selectedContacts,};
   if(selectedContacts != undefined){
     showPopup();
     allTasks.push(allTask);
@@ -158,7 +148,6 @@ function createTask(status) {
     allSubtask = [];
     clearTask();
   }
-  
 }
 
 /**

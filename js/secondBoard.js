@@ -66,6 +66,8 @@ function showCardMainBoard(taskId) {
   let task = allTasks.find((task) => task.id === taskId);
   let showMainBoardContainer = document.getElementById("showMainBoardContainer");
   let mainBoardContainer = document.getElementById("mainBoardContainer");
+  let Image = CheckImagePrioagain(task);
+  let Text = CheckTextPrioagain(task);
   let { priorityImage, priorityText, backgroundColor } =
     checkPrioPopupCard(task);
   let subtask = generateSubtaskHtml(task, taskId);
@@ -73,7 +75,37 @@ function showCardMainBoard(taskId) {
     .map((contact) => generateInitialsAndFullName(contact))
     .join("");
   mainBoardContainer.style.display = "none";
-  showMainBoardContainer.innerHTML = generateShowCardHtml(task, taskId, subtask, backgroundColor, priorityText, priorityImage, assignedContactsHtml);
+  showMainBoardContainer.innerHTML = generateShowCardHtml(task, taskId, subtask, backgroundColor, priorityText, priorityImage, Image, Text, assignedContactsHtml);
+}
+
+/**
+ * @param {Task} task 
+ * @returns Backgroundcolor 
+ */
+function CheckBackgroundPrioagain(task){
+  if (task.priority === "urgent") {
+    priorityB = "rgb(255, 61, 0)";;
+  } else if (task.priority === "medium") {
+    priorityB = "rgb(255, 168, 0)";
+  } else {
+    priorityB = "rgb(122, 226, 41)";
+  }
+  return priorityB;
+}
+
+/**
+ * @param {Task} task 
+ * @returns Text
+ */
+function CheckTextPrioagain(task){
+  if (task.priority === "urgent") {
+    priorityText = "Urgent";
+  } else if (task.priority === "medium") {
+    priorityText = "Medium";
+  } else {
+    priorityText = "Low";
+  }
+  return priorityText;
 }
 
 /**
