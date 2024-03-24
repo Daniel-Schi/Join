@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,21 +9,21 @@
     <link rel="stylesheet" href="board.css">
     <link rel="stylesheet" href="fonts.css">
     <link rel="stylesheet" href="addtask.css">
-    <link rel="stylesheet" href="contact.css">
     <script src="js/storage.js"></script>
     <script src="js/register.js"></script>
-    <script src="js/board.js"></script>
-    <script src="js/summary.js"></script>
-    <script src="js/template.js"></script>
+    <script src="board.js"></script>
+    <script src="summary.js"></script>
+    <script src="template.js"></script>
     <script src="js/logtinAcc.js"></script>
-    <script src="js/contact.js"></script>
-    <script src="js/secondBoard.js"></script>
-    <script src="js/thirdBoard.js"></script>
-    <script src="js/contact_templates.js"></script>
+    <script src="contact.js"></script>
+    <script src="secondBoard.js"></script>
+    <script src="thirdBoard.js"></script>
+    <script src="contact_templates.js"></script>
     <link rel="icon" type="image/svg" href="img/Join-logo.svg">
     <title>AddTask</title>
 </head>
-<body onload="includeHTML('addTask'); loadLoggedInUser(); setCurrentDate(); renderCategory(); renderAllContacts();">
+
+<body onload="includeHTML();loadLogtinUser(); setCurrentDate(); renderCategory(); renderAllContacts(); ">
     <div w3-include-html="head_navbar.html"></div>
     <div class="addTitleContainer">
         <p>Kanban Project Management Tool</p>
@@ -30,14 +31,14 @@
     <div class="headTaskContainer">
         <h1>Add Task</h1>
     </div>
-    <form onsubmit="createTask('todo'); return false">
-        <button class="buttonTaskHeader" type="submit">Create<img
+    <form>
+        <button class="buttonTaskHeader" onclick="createTask('todo')">Create<img
                 src="img/akar-icons_check.svg"></button>
         <div class="mainTaskContainer">
             <div class="leftTaskContainer">
                 <div class="titleContainer">
                     <label for="title">Title</label>
-                    <input required type="text" id="title" placeholder="Enter a title" minlength="3" >
+                    <input required type="text" id="title" placeholder="Enter a title" minlength="3">
                 </div>
                 <div class="descriptionContainer">
                     <label for="description">Description</label>
@@ -60,7 +61,7 @@
                 <div class="d-none" id="newCategoryContainer"></div>
                 <div class="d-none" id="categoryColors">
                 </div>
-                <div class="assignedToContainer">
+                <div class="assignedToContainer" onclick="openDropBoxAssigned(); event.preventDefault()">
                     <label for="Category">Assigned to</label>
                     <div onclick="openDropBoxAssigned()" class="childTaskContainer" id="assigned">
                         <p>Select contacts to assign</p>
@@ -75,7 +76,7 @@
                 <div>
                     <div class="dateContainer">
                         <label for="date">Due date</label>
-                        <input type="date" id="date">
+                        <input type="date" id="date" placeholder="date" min="01-01-2024" max="31-12-2024">
                     </div>
                 </div>
                 <div class="prioContainer" id="prioContainer">
@@ -108,7 +109,7 @@
                 <div class="buttonTaskContainer">
                     <button class="buttonTask" onclick="clearTask()">Clear <img class="cancelIcon"
                             src="img/iconoir_cancel.svg"></button>
-                    <button class="buttonTask2" type="submit">Create Task<img
+                    <button class="buttonTask2" onclick="createTask('todo')">Create Task<img
                             src="img/akar-icons_check.svg"></button>
                 </div>
             </div>

@@ -13,13 +13,15 @@ function searchCards() {
     const cardDescription = card
       .querySelector(".cardDescription")
       .textContent.toLowerCase();
-    if (cardTitle.includes(searchValue) ||cardDescription.includes(searchValue)) {
+    if (cardTitle.includes(searchValue) || cardDescription.includes(searchValue)) {
       matchedCards.push(card);
     }
   });
-  cards.forEach((card) => {card.style.display = "none";
+  cards.forEach((card) => {
+    card.style.display = "none";
   });
-  matchedCards.forEach((card) => {card.style.display = "block";
+  matchedCards.forEach((card) => {
+    card.style.display = "block";
   });
 }
 
@@ -53,7 +55,7 @@ async function showCardPopup(taskId) {
     .join("");
   overlayDiv.classList.add("overlay");
   document.body.appendChild(overlayDiv);
-  popupCard.innerHTML = generatePopupCardHtml(task,taskId,subtask,backgroundColor,priorityText,priorityImage,assignedContactsHtml);
+  popupCard.innerHTML = generatePopupCardHtml(task, taskId, subtask, backgroundColor, priorityText, priorityImage, assignedContactsHtml);
 }
 
 /**
@@ -66,8 +68,6 @@ function showCardMainBoard(taskId) {
   let task = allTasks.find((task) => task.id === taskId);
   let showMainBoardContainer = document.getElementById("showMainBoardContainer");
   let mainBoardContainer = document.getElementById("mainBoardContainer");
-  let Image = checkImagePrioagain(task);
-  let Text = checkTextPrioagain(task);
   let { priorityImage, priorityText, backgroundColor } =
     checkPrioPopupCard(task);
   let subtask = generateSubtaskHtml(task, taskId);
@@ -75,33 +75,7 @@ function showCardMainBoard(taskId) {
     .map((contact) => generateInitialsAndFullName(contact))
     .join("");
   mainBoardContainer.style.display = "none";
-  showMainBoardContainer.innerHTML = generateShowCardHtml(task, taskId, subtask, backgroundColor, priorityText, priorityImage, Image, Text, assignedContactsHtml);
-}
-
-/**
- * @param {Task} task 
- * @returns Text
- */
-function checkTextPrioagain(task){
-  if (task.priority === "urgent") {
-    priorityText = "Urgent";
-  } else if (task.priority === "medium") {
-    priorityText = "Medium";
-  } else {
-    priorityText = "Low";
-  }
-  return priorityText;
-}
-
-function checkImagePrioagain(task){
-  if (task.priority === "urgent") {
-    priorityImage = "img/Prio-urgent-white.png";
-  } else if (task.priority === "medium") {
-    priorityImage = "img/Prio-medium-white.png";
-  } else {
-    priorityImage = "img/Prio-low-white.png";
-  }
-  return priorityImage;
+  showMainBoardContainer.innerHTML = generateShowCardHtml(task, taskId, subtask, backgroundColor, priorityText, priorityImage, assignedContactsHtml);
 }
 
 /**
@@ -112,20 +86,9 @@ async function editPopupCard(taskId) {
   let task = allTasks.find((task) => task.id === taskId);
   let today = new Date();
   let popupCard = document.getElementById("popupContainer");
-  let wichPrio = await checkPrioPopupCard(task);
+  await checkPrioPopupCard(task);
   popupCard.innerHTML = generateEditPopupCardHtml(task, taskId, today);
   renderAllContacts(taskId);
-  checkPrioboxforedit(wichPrio);
-}
-
-function checkPrioboxforedit(wichPrio){
-  if(wichPrio.which == "urgent"){
-    checkpriobox('urgent');
-  }else if(wichPrio.which == "medium"){
-    checkpriobox('medium');
-  }else{
-    checkpriobox('low');
-  }
 }
 
 /**
@@ -136,7 +99,7 @@ async function editShowCard(taskId) {
   let task = allTasks.find((task) => task.id === taskId);
   let today = new Date();
   let showCard = document.getElementById("showCard");
- await checkPrioPopupCard(task);
+  await checkPrioPopupCard(task);
   showCard.innerHTML = generateEditShowCardHtml(task, taskId, today, showCard);
   renderAllContacts(taskId);
 }
@@ -146,11 +109,25 @@ async function editShowCard(taskId) {
  */
 function closePopupTaskCard() {
   let mainAddTaskContainer = document.querySelector(".mainAddTaskContainer");
-  let overlayDiv = document.querySelector(".overlay");
-  document.body.removeChild(overlayDiv);
-  mainAddTaskContainer.classList.remove("open");
+  let overlayDiv = document.querySelector("#overlaydings");
+  // document.body.removeChild(overlayDiv);
+  // mainAddTaskContainer.classList.remove("open");
   mainAddTaskContainer.classList.add("d-none");
+  overlayDiv.classList.remove("overlay");
+  // Entferne den Event-Listener, um zu verhindern, dass die Karte geschlossen wird, wenn sie bereits geschlossen ist
+  // document.body.removeEventListener("click", closeIfOutside);
 }
+
+// function closeIfOutside(event) {
+//   // let mainAddTaskContainer = document.querySelector(".mainAddTaskContainer");
+//   let popupAddTaskContainer = document.getElementById("mainAddTaskContainer");
+
+//   // Überprüfe, ob der Klick außerhalb der Karte erfolgt
+//   if (!popupAddTaskContainer.contains(event.target)) {
+//     // Klick war außerhalb der Karte, schließe die Karte
+//     closePopupTaskCard();
+//   }
+// }
 
 /**
  * Closes the popup card and renders the board cards.
@@ -359,15 +336,15 @@ function savePopupCard(taskId) {
   let categoryColor = getCategoryColor(task, "selectColorBox");
   let selectedContacts = getSelectedContacts();
   let priority = clickedId;
-  if (!clickedId) {document.getElementById("prioBoxAlarm").innerHTML = `<div class="alarmBoxPrio">Select a priority!</div>`;
+  if (!clickedId) {
+    document.getElementById("prioBoxAlarm").innerHTML = `<div class="alarmBoxPrio">Select a priority!</div>`;
     return;
   }
   upadateValuePopUp(task, title, description, date, categoryText, categoryColor, selectedContacts, priority);
   startOtherFunctions(allTasks, taskId, task, currentElement);
 }
 
-
-function upadateValuePopUp(task,title, description,date,categoryText,categoryColor,selectedContacts,priority
+function upadateValuePopUp(task, title, description, date, categoryText, categoryColor, selectedContacts, priority
 ) {
   task.title = title;
   task.description = description;

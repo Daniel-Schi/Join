@@ -9,7 +9,8 @@
  * @returns {string} The generated HTML for displaying the contact information.
  */
 function openContactHTML(name,firstandSecoundLetters,email,phone,Letter,i){
-    return `
+    return /*html*/`
+        
         <div class="contact-Name">
             <div style="background-color: ${sortedContacts[`${Letter}`][i]['color']}!important;" id="twoLettersContact" class="profilepicture">${firstandSecoundLetters}</div>
             <div class="showname">

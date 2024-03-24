@@ -4,12 +4,12 @@ function generateCardHTML(task) {
     .map((contact) => generateInitials(contact))
     .join("");
 
-  return /* html */`
+  return `
     <div draggable="true" onclick="showCard(${task.id})" ondragstart="startDragging(${task.id})" class="card">
       <div class="cardCategory" style="background-color:${task.categoryColor}">${task.categoryText}</div>
       <div class="cardTitle">${task.title}</div>
       <div class="cardDescription">${task.description}</div>
-        ${progressBarContainerHTML}
+      ${progressBarContainerHTML}
       <div class="lowerCard">
         <div class="cardUser">${assignedContactsHtml}</div>
         <div class="cardPrio"><img src="img/${task.priority}.svg"></div>
@@ -18,8 +18,17 @@ function generateCardHTML(task) {
   `;
 }
 
-function generatePopupCardHtml(task, taskId, subtaskHtml, backgroundColor, priorityText, priorityImage, assignedContactsHtml) {
-  return /* html */`
+function generatePopupCardHtml(
+  task,
+  taskId,
+  subtaskHtml,
+  backgroundColor,
+  priorityText,
+  priorityImage,
+  assignedContactsHtml
+) {
+  return /*html*/`
+  <div id="overlaydings" onclick="closePopupCard()">
     <div class="popupCard">
       <div>
         <div class="cancelPopupCardBox"><div onclick="closePopupCard()" class="cancelIconPopupCard"><img src="img/cross.png"></div></div>
@@ -31,7 +40,6 @@ function generatePopupCardHtml(task, taskId, subtaskHtml, backgroundColor, prior
       <div class="popupPrioContainer" id="popupPrioContainer" ><b>Priority:</b>
         <div class="popupPrioBox" id="popupPrioBox" style="background-color:${backgroundColor}">${priorityText} <img src="${priorityImage}"></div>
       </div>
-
       <div class="popupCardAssigned"><b>Assigned To:</b>${assignedContactsHtml}</div>
       <div class="popupCardLowerContainer">
         <div class="popupCardSubContainer">
@@ -46,62 +54,62 @@ function generatePopupCardHtml(task, taskId, subtaskHtml, backgroundColor, prior
           </div> 
       </div>
     </div>
+  </div>
   `;
 }
 
 function generateEditPopupCardHtml(task, taskId, today) {
-  return /* html */`
+  return /*html*/`
     <div class="popupCard">
-      <form onsubmit="event.preventDefault(); savePopupCard(${taskId})">
+    <form onsubmit="event.preventDefault(); savePopupCard(${taskId})">
       <div>
-        <div class="cancelPopupCardBox">
-          <div onclick="closePopupCard()" class="cancelIconPopupCard"><img src="img/cross.png"></div>
-        </div>
+        <div class="cancelPopupCardBox"><div onclick="closePopupCard()" class="cancelIconPopupCard"><img src="img/cross.png"></div></div>
         <div class="editPopupCardCategory" id="popupcardCategory" onclick="setPopupCategoryCard(${taskId})" style="background-color:${task.categoryColor
     }">${task.categoryText}</div>
         <div id="popupCategoryBox" class="popupCategoryBox"></div>
       </div>
       <div class="popupCardtitleContainer">
-        <label for="title">Title</label>
-        <input required type="text" class="popupCardTitle" id="popupCardTitle" minlength="3" value="${task.title
+          <label for="title">Title</label>
+          <input required type="text" class="popupCardTitle" id="popupCardTitle" minlength="3" value="${task.title
     }">
       </div>
       <div class="popupCarddescriptionContainer">
-        <label for="description">Description</label>
-        <textarea required class="popupcardDescription" id="popupcardDescription" minlength="3">${task.description
+          <label for="description">Description</label>
+          <textarea required class="popupcardDescription" id="popupcardDescription" minlength="3">${task.description
     }</textarea>
       </div>
       <div class="popupCarddateContainer">
         <label for="date">Due date</label>
-        <input type="date" class="popupCardDate" id="popupCardDate" min="${today.toISOString().split("T")[0]}"value="${task.date}">
+        <input type="date" class="popupCardDate" id="popupCardDate" min="${today.toISOString().split("T")[0]
+    }" value="${task.date}">
       </div>
       <div class="prioContainerPopup" id="prioContainer">
-        <label for="Prio">Prio</label>
-        <div class="prioChildContainer">
-          <div id="urgent" onclick="checkpriobox('urgent')" class="prioBox">
-           <span id="urgentSpan">Urgent</span> 
-            <img src="img/urgent.svg" data-default-img="img/urgent.svg" alt="Urgent Priority">
-          </div>
-          <div id="medium" onclick="checkpriobox('medium')" class="prioBox">
-            <span id="mediumSpan">Medium</span>
-            <img src="img/medium.svg" data-default-img="img/medium.svg" alt="Medium Priority">
-          </div>
-          <div id="low" onclick="checkpriobox('low')" class="prioBox">
-            <span id="lowSpan">Low</span>
-            <img src="img/low.svg" data-default-img="img/low.svg" alt="Low Priority">
-          </div>
-        </div>
-        <div id="prioBoxAlarm"></div>
-      </div>
+                    <label for="Prio">Prio</label>
+                    <div class="prioChildContainer">
+                        <div id="urgent" onclick="checkpriobox('urgent')" class="prioBox">
+                            Urgent
+                            <img src="img/urgent.svg" data-default-img="img/urgent.svg" alt="Urgent Priority">
+                        </div>
+                        <div id="medium" onclick="checkpriobox('medium')" class="prioBox">
+                            Medium
+                            <img src="img/medium.svg" data-default-img="img/medium.svg" alt="Medium Priority">
+                        </div>
+                        <div id="low" onclick="checkpriobox('low')" class="prioBox">
+                            Low
+                            <img src="img/low.svg" data-default-img="img/low.svg" alt="Low Priority">
+                        </div>
+                    </div>
+                    <div id="prioBoxAlarm"></div>
+                </div>
       <div class="assignedToContainer">
-        <label for="Category"><b>Assigned to</b></label>
-        <div onclick="openDropBoxAssigned(${taskId})" class="childPopupTaskContainer" id="assigned">
-          <p>Select contacts to assign</p>
-          <img src="img/arrowTask.svg">
-        </div>
-        <div class="d-none" id="dropDownUser"></div>
-        <p class="error-message" id="assigned-error"></p>
-      </div>  
+                    <label for="Category"><b>Assigned to</b></label>
+                    <div onclick="openDropBoxAssigned(${taskId})" class="childPopupTaskContainer" id="assigned">
+                        <p>Select contacts to assign</p>
+                        <img src="img/arrowTask.svg">
+                    </div>
+                    <div class="d-none" id="dropDownUser"></div>
+                    <p class="error-message" id="assigned-error"></p>
+                </div>  
       <div class="popupCardEditImgContainer">
         <div>
           <button class="popupSaveButton" type="submit">Ok<img src="img/akar-icons_check.svg"></button>
@@ -112,8 +120,16 @@ function generateEditPopupCardHtml(task, taskId, today) {
   `;
 }
 
-function generateShowCardHtml(task, taskId, subtaskHtml, backgroundColor, priorityText, priorityImage, assignedContactsHtml) {
-  return /* html */`
+function generateShowCardHtml(
+  task,
+  taskId,
+  subtaskHtml,
+  backgroundColor,
+  priorityText,
+  priorityImage,
+  assignedContactsHtml
+) {
+  return html`
     <div class="showCard" id="showCard">
       <div class="showCategoryContainer">
         <div class="popupcardCategory" style="background-color:${task.categoryColor}">${task.categoryText}</div>
@@ -153,7 +169,7 @@ function generateShowCardHtml(task, taskId, subtaskHtml, backgroundColor, priori
 }
 
 function generateEditShowCardHtml(task, taskId, today) {
-  return /* html */`
+  return /*html*/`
     <form onsubmit="event.preventDefault(); savePopupCard(${taskId})">
       <div>
         <div class="cancelPopupCardBox"><div onclick="closeShowCard()" class="cancelIconPopupCard"><img src="img/cross.png"></div></div>
@@ -161,44 +177,47 @@ function generateEditShowCardHtml(task, taskId, today) {
         <div id="popupCategoryBox" class="popupCategoryBox"></div>
       </div>
       <div class="popupCardtitleContainer">
-        <label for="title">Title</label>
-        <input required type="text" class="popupCardTitle" id="popupCardTitle" minlength="3" value="${task.title}">
+          <label for="title">Title</label>
+          <input required type="text" class="popupCardTitle" id="popupCardTitle" minlength="3" value="${task.title
+    }">
       </div>
       <div class="popupCarddescriptionContainer">
-        <label for="description">Description</label>
-        <textarea required class="popupcardDescription" id="popupcardDescription" minlength="3">${task.description}</textarea>
+          <label for="description">Description</label>
+          <textarea required class="popupcardDescription" id="popupcardDescription" minlength="3">${task.description
+    }</textarea>
       </div>
       <div class="popupCarddateContainer">
         <label for="date">Due date</label>
-        <input type="date" class="popupCardDate" id="popupCardDate" min="${today.toISOString().split("T")[0]}"value="${task.date}">
+        <input type="date" class="popupCardDate" id="popupCardDate" min="${today.toISOString().split("T")[0]
+    }" value="${task.date}">
       </div>
       <div class="prioContainerPopup" id="prioContainer">
-        <label for="Prio">Prio</label>
-        <div class="prioChildContainer">
-          <div id="urgent" onclick="checkpriobox('urgent')" class="prioBox">
-            Urgent
-            <img src="img/urgent.svg" data-default-img="img/urgent.svg" alt="Urgent Priority">
-          </div>
-          <div id="medium" onclick="checkpriobox('medium')" class="prioBox">
-            Medium
-            <img src="img/medium.svg" data-default-img="img/medium.svg" alt="Medium Priority">
-          </div>
-          <div id="low" onclick="checkpriobox('low')" class="prioBox">
-            Low
-            <img src="img/low.svg" data-default-img="img/low.svg" alt="Low Priority">
-          </div>
-        </div>
-        <div id="prioBoxAlarm"></div>
-      </div>
+                    <label for="Prio">Prio</label>
+                    <div class="prioChildContainer">
+                        <div id="urgent" onclick="checkpriobox('urgent')" class="prioBox">
+                            Urgent
+                            <img src="img/urgent.svg" data-default-img="img/urgent.svg" alt="Urgent Priority">
+                        </div>
+                        <div id="medium" onclick="checkpriobox('medium')" class="prioBox">
+                            Medium
+                            <img src="img/medium.svg" data-default-img="img/medium.svg" alt="Medium Priority">
+                        </div>
+                        <div id="low" onclick="checkpriobox('low')" class="prioBox">
+                            Low
+                            <img src="img/low.svg" data-default-img="img/low.svg" alt="Low Priority">
+                        </div>
+                    </div>
+                    <div id="prioBoxAlarm"></div>
+                </div>
       <div class="assignedToContainer">
-        <label for="Category"><b>Assigned to</b></label>
-        <div onclick="openDropBoxAssigned(${taskId})" class="childPopupTaskContainer" id="assigned">
-          <p>Select contacts to assign</p>
-          <img src="img/arrowTask.svg">
-        </div>
-        <div class="d-none" id="dropDownUser"></div>
-        <p class="error-message" id="assigned-error"></p>
-      </div>  
+                    <label for="Category"><b>Assigned to</b></label>
+                    <div onclick="openDropBoxAssigned(${taskId})" class="childPopupTaskContainer" id="assigned">
+                        <p>Select contacts to assign</p>
+                        <img src="img/arrowTask.svg">
+                    </div>
+                    <div class="d-none" id="dropDownUser"></div>
+                    <p class="error-message" id="assigned-error"></p>
+                </div>  
       <div class="popupCardEditImgContainer">
         <div>
           <button class="popupSaveButton" type="submit">Ok<img src="img/akar-icons_check.svg"></button>
@@ -210,8 +229,9 @@ function generateEditShowCardHtml(task, taskId, today) {
 }
 
 function popupAddTaskContainerTemplate(status) {
-  return /* html */`
-    <div class="mainAddTaskContainer">
+  return /*html*/`
+  <div class="overlay" id="overlaydings" onclick="closePopupTaskCard()">
+    <div class="mainAddTaskContainer" onclick="event.stopPropagation()">
       <div class="cancelIconPopupCard" onclick="closePopupTaskCard()"><img src="img/cross.png"></div>
       <div class="headAddTaskContainer">
         <p>Add Task</p>
@@ -253,65 +273,65 @@ function popupAddTaskContainerTemplate(status) {
             </div>
           </div>
           <div class="middleAddTaskContainer"></div>
-          <div class="rightAddTaskContainer"><div>
-            <div class="dateContainer">
-              <label for="date">Due date</label>
-              <input type="date" id="date">
-            </div>
-          </div>
-          <div class="prioContainer" id="prioContainer">
-            <label for="Prio">Prio</label>
-            <div class="prioChildContainer">
-              <div id="urgent" onclick="checkpriobox('urgent')" class="prioBox">
-                Urgent
-                <img src="img/urgent.svg" data-default-img="img/urgent.svg" alt="Urgent Priority">
-              </div>
-              <div id="medium" onclick="checkpriobox('medium')" class="prioBox">
-                Medium
-                <img src="img/medium.svg" data-default-img="img/medium.svg" alt="Medium Priority">
-              </div>
-              <div id="low" onclick="checkpriobox('low')" class="prioBox">
-                Low
-                <img src="img/low.svg" data-default-img="img/low.svg" alt="Low Priority">
+          <div class="rightAddTaskContainer">
+            <div>
+              <div class="dateContainer">
+                <label for="date">Due date</label>
+                <input type="date" id="date">
               </div>
             </div>
-            <div id="prioBoxAlarm"></div>
-          </div>
-          <div class="subtaskContainer">
-            <label for="subtaskChildInput">Subtasks</label>
-            <div class="subtaskChildContainer">
-              <input onclick="changeSubImg()" id="subtask" type="text" placeholder="Add new subtask">
-              <div class="subImgContainer" id="subImgContainer"><img src="img/icon_cancel.svg"></div>
+            <div class="prioContainer" id="prioContainer">
+                    <label for="Prio">Prio</label>
+                    <div class="prioChildContainer">
+                        <div id="urgent" onclick="checkpriobox('urgent')" class="prioBox">
+                            Urgent
+                            <img src="img/urgent.svg" data-default-img="img/urgent.svg" alt="Urgent Priority">
+                        </div>
+                        <div id="medium" onclick="checkpriobox('medium')" class="prioBox">
+                            Medium
+                            <img src="img/medium.svg" data-default-img="img/medium.svg" alt="Medium Priority">
+                        </div>
+                        <div id="low" onclick="checkpriobox('low')" class="prioBox">
+                            Low
+                            <img src="img/low.svg" data-default-img="img/low.svg" alt="Low Priority">
+                        </div>
+                    </div>
+                    <div id="prioBoxAlarm"></div>
+                </div>
+            <div class="subtaskContainer">
+              <label for="subtaskChildInput">Subtasks</label>
+              <div class="subtaskChildContainer">
+                <input onclick="changeSubImg()" id="subtask" type="text" placeholder="Add new subtask">
+                <div class="subImgContainer" id="subImgContainer"><img src="img/icon_cancel.svg"></div>
+              </div>
             </div>
+            <div id="subTaskDescription" class="subTaskDescription"></div>
           </div>
-          <div id="subTaskDescription" class="subTaskDescription"></div>
         </div>
-      </div>
-      <div class="buttonAddTaskContainer">
-        <button class="buttonTask2" type="submit">Create Task<img src="img/akar-icons_check.svg"></button>
-        <button class="buttonTask" onclick="clearTask()">Clear <img class="cancelIcon" src="img/iconoir_cancel.svg"></button>
-      </div>
-    </form>
-  </div>
+        <div class="buttonAddTaskContainer">
+          <button class="buttonTask2" type="submit">Create Task<img src="img/akar-icons_check.svg"></button>
+          <button class="buttonTask" onclick="clearTask()">Clear <img class="cancelIcon" src="img/iconoir_cancel.svg"></button>
+        </div>
+      </form>
+    </div>
+    </div>
   `;
 }
 
 function newCategoryHtml() {
-  return /* html */`
-  <label for="Category">Category</label>
-    <div class="subtaskChildContainer" >
-      <div id="colorBox" class="colorBox"></div>
-      <input type="text" id="inputCategory" placeholder="New category name">
-      <div class="subImgContainer">
-      <img onclick="closeNewCategory()" src="img/iconoir_cancel_black.svg">
-      <div class="searchBarLine"></div>
-      <img onclick="addNewCategory()" id="subImg" src="img/akar-icons_check_black.svg">
-    </div>
+  return /*html*/`<label for="Category">Category</label><div class="subtaskChildContainer" >
+  <div id="colorBox" class="colorBox"></div>
+  <input type="text" id="inputCategory" placeholder="New category name">
+  <div class="subImgContainer">
+    <img onclick="closeNewCategory()" src="img/iconoir_cancel_black.svg">
+    <div class="searchBarLine"></div>
+    <img onclick="addNewCategory()" id="subImg" src="img/akar-icons_check_black.svg">
+  </div>
   </div>`;
 }
 
 function renderSummaryCardsHTML(totalCount, todoCount, progressCount, feedbackCount, doneCount, urgentCount) {
-  return /* html */`
+  return /*html*/`
   <div class="content">
     <div class="tasks-container">
       <div class="task-boxes" onclick="linkToBoard()">
@@ -359,7 +379,8 @@ function renderSummaryCardsHTML(totalCount, todoCount, progressCount, feedbackCo
             <p>Done</p>
           </div>
         </div>
-      </div>     
+      </div>
+      
       </div><div class="greet">
         <div class="greeting-message" id="greeting-message"></div>
         <div class="gretting-user" id="greeting-user"></div>
@@ -369,51 +390,52 @@ function renderSummaryCardsHTML(totalCount, todoCount, progressCount, feedbackCo
 }
 
 function renderHTML() {
-  return /* html */`
+  return /*html*/`
   <div>
-    <h1>Log in</h1>
-    <div class="overH1-line">
-      <div class="h1-line"></div>
-    </div>
-  </div>
-  <form class="login-value">
-    <div class="relativ-for-icon">
-      <input required placeholder="Email" type="email" id="email">
-      <img src="img/emailicon.svg" alt="">
-    </div>
-    <div class="relativ-for-icon">
-      <input required onkeyup="checkInput()" id="password" placeholder="Password" type="password">
-      <img id="password-img" onclick="seePassword()" src="img/passwordicon.svg" alt="">
-      <span id="wrong" class="d-none worng">wrong password</span>
-    </div>
-    <div class="password-options">
-      <div class="checkbox">
-        <div>
-        <input onclick="RememberMeSetLocalStorage()" id="check" type="checkbox">
-        </div>
-        <div>
-          <span>Remember me</span>
-        </div>
-      </div>
-      <div class="forgot">
-        <a onclick="renderPassword()">Forgot my password</a>
-      </div>
-    </div>
-    <div class="login-buttons">
-      <div>
-        <button type="submit" onclick="login(event)" class="login-button">Log in</button>
-      </div>
-      <div>
-        <button type="button" onclick="guestLogin()" id="guest" class="guest-button">Guest Log in</button>
-      </div>
-    </div>
-  </form>
+                  <h1>Log in</h1>
+                  <div class="overH1-line">
+                    <div class="h1-line"></div>
+                  </div>
+              </div>
+              <form class="login-value">
+                  <div class="relativ-for-icon">
+                      <input required placeholder="Email" type="email" id="email">
+                      <img src="img/emailicon.svg" alt="">
+                    </div>
+                    <div class="relativ-for-icon">
+                      <input required onkeyup="checkInput()" id="password" placeholder="Password" type="password">
+                      <img id="password-img" onclick="seePassword()" src="img/passwordicon.svg" alt="">
+                      <span id="wrong" class="d-none worng">wrong password</span>
+                  </div>
+                  <div class="password-options">
+                      <div class="checkbox">
+                          <div>
+                              <input onclick="RememberMeSetLocalStorage()" id="check" type="checkbox">
+                          </div>
+                          <div>
+                              <span>Remember me</span>
+                          </div>
+                      </div>
+                      <div class="forgot">
+                        <a onclick="renderPassword()">Forgot my password</a>
+                      </div>
+                    </div>
+                    <div class="login-buttons">
+                      <div>
+                        <button type="submit" onclick="login(event)" class="login-button">Log in</button>
+                      </div>
+                      <div>
+                        <button type="button" onclick="guestLogin()" id="guest" class="guest-button">Guest Log in</button>
+                      </div>
+                    </div>
+              </form>
+
 `;
 }
 
 function SignUpHTML() {
-  return /* html */`
-<div class="back">
+  return /*html*/`
+  <div class="back">
   <img onclick="back()" src="img/blackarrowicon.svg" alt="">
 </div>
 <div>
@@ -425,101 +447,59 @@ function SignUpHTML() {
 <div class="login-value">
   <form onsubmit="register();return false;">
       <div class="relativ-for-icon">
-        <input required id="inputName" placeholder="Name" type="text" minlength="2">
-        <img src="img/people.svg" alt="">
+          <input required id="inputName" placeholder="name" type="text" minlength="2">
+          <img src="img/people.svg" alt="">
       </div>
       <div class="relativ-for-icon">
-        <input required id="inputEmail" placeholder="Email" type="email">
-        <img src="img/emailicon.svg" alt="">
+          <input required id="inputEmail" placeholder="Email" type="email">
+          <img src="img/emailicon.svg" alt="">
       </div>
       <div class="relativ-for-icon">
-        <input required onkeyup="checkInput()" id="password" placeholder="Password" type="password">
-        <img id="password-img" onclick="seePassword()" src="img/passwordicon.svg" alt="">
+          <input required onkeyup="checkInput()" id="password" placeholder="Password" type="password">
+          <img id="password-img" onclick="seePassword()" src="img/passwordicon.svg" alt="">
       </div>
       <div class="login-buttons-sign-up">
-        <div>
-          <button id="Btn" class="login-button">Sign up</button>
-        </div>
+          <div>
+              <button id="Btn" class="login-button">Sign up</button>
+          </div>
       </div>
   </form>
 </div>
-`;
+
+  `;
 }
 
 function forgotMyPasswordHTML() {
   return /* html */`
+  
   <div class="back">
       <img onclick="back()" src="img/blackarrowicon.svg" alt="">
   </div>
   <div>
-    <h1>I forgot my password</h1>
-    <div class="overH1-line">
-      <div class="h1-line"></div>
-    </div>
+      <h1>I forgot my password</h1>
+      <div class="overH1-line">
+          <div class="h1-line"></div>
+      </div>
   </div>
   <span class="Password-text">Don't worry! We will send you an email with the instructions to <br> reset your password.</span>
   <div class="login-value">
-    <form onsubmit="forgotPassword(); return false;">
-      <div class="relativ-for-icon">
-        <input id="email" required placeholder="Email" type="email">
-        <img src="img/emailicon.svg" alt="">
+      <form onsubmit="forgotPassword(); return false;">
+          <div class="relativ-for-icon">
+              <input id="email" required placeholder="Email" type="email">
+              <img src="img/emailicon.svg" alt="">
+          </div>
+          <div class="send d-none" id="send">
+              <img style="display:block;" src="img/SendCheck.svg" alt=""> 
+              <span>An E-Mail has been sent to you</span>
+          </div>
+          <div class="login-buttons-sign-up">
+          <div>
+              <button style="width: 200px; margin-top: 20px;" class="login-button">Send me the Email</button>
+          </div>
       </div>
-      <div class="send d-none" id="send">
-        <img style="display:block;" src="img/SendCheck.svg" alt=""> 
-        <span>An E-Mail has been sent to you</span>
-      </div>
-      <div class="login-buttons-sign-up">
-        <div>
-          <button style="width: 200px; margin-top: 20px;" class="login-button">Send me the Email</button>
-        </div>
-      </div>
-    </form>
+      </form>
   </div>
 </div>
-`;
-}
 
-/**
- * Generates the HTML for a subtask element in the popup card.
- * @param {string} checkboxId - The ID of the subtask checkbox.
- * @param {string} checkedAttribute - The "checked" attribute for the checkbox.
- * @param {number} taskId - The ID of the task associated with the subtask.
- * @param {number} i - The index of the subtask.
- * @param {Object} task - The task object containing subtask information.
- * @returns {string} The HTML code for the subtask element.
- */
-function SubtaskHTMLgerate(checkboxId, checkedAttribute, taskId, i, task) {
-  return `
-    <div class="popupCardSubItem">
-      <input type="checkbox" class="popupCardCheckbox" id="${checkboxId}" ${checkedAttribute} onclick="updateProgress(${taskId}, ${i})">
-      <span class="popupCardSubtask">${task.subtask[i]}</span>
-    </div>
   `;
-}
-
-/**
- * Changes the subtask images in the HTML.
- */
-function changeSubImg() {
-  document.getElementById("subImgContainer").innerHTML = `<div class="subImgContainer">
-    <img onclick="closeSubImg()" src="img/iconoir_cancel_black.svg">
-    <div class="searchBarLine"></div>
-    <img onclick="addSubtask()" id="subImg" src="img/akar-icons_check_black.svg">
-  </div>`;
-}
-
-/**
- * Generates the HTML for the progress bar in a card.
- * @param {number} progress - The progress value (0-100).
- * @param {number} completedSubtasks - The number of completed subtasks.
- * @param {number} totalSubtasks - The total number of subtasks.
- * @returns {string} The HTML code for the progress bar.
- */
-function generateProgressHTML(progress, completedSubtasks, totalSubtasks) {
-  return `
-  <div class="progressBarContainer" id="progressBarContainer">
-    <div class="cardProgress"><progress value="${progress}" max="100"></progress></div>
-    <div class="checkboxCount">${completedSubtasks}/${totalSubtasks} Done</div>
-  </div>
-`;
 }

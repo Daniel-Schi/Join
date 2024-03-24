@@ -100,10 +100,6 @@
   background-color: #091931;
 }
 
-.navbarSection.selected {
-  background-color: #091931; 
-  color: #fff;
-}
 .lowerNavbarSection {
   text-decoration: none;
   display: flex;

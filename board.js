@@ -60,7 +60,7 @@ loadUsers();
 /**
  * Includes the HTML templates and renders the user profile header.
  */
-async function includeHTML(page) {
+async function includeHTML() {
   let includeElements = document.querySelectorAll("[w3-include-html]");
   for (let i = 0; i < includeElements.length; i++) {
     const element = includeElements[i];
@@ -70,10 +70,9 @@ async function includeHTML(page) {
       element.innerHTML = await resp.text();
     } else {
       element.innerHTML = "Page not found";
-    }     
+    }
   }
   renderUserProfileHead();
-  setActiv(page);
 }
 /**
  * Renders the board cards by status on the board page.
@@ -138,16 +137,23 @@ function createTask(status) {
   if (checkPrioritySelected()) {
     return;
   }
-  let allTask = {id: allTasks.length, title: title.value, description: description.value, categoryText: categoryText.innerHTML,
-    categoryColor: categoryColor.style.backgroundColor, date: date.value, priority: priority, status: status, subtask: allSubtask,
-    contacts: selectedContacts,};
-  if(selectedContacts != undefined){
-    showPopup();
-    allTasks.push(allTask);
-    save();
-    allSubtask = [];
-    clearTask();
-  }
+  let allTask = {
+    id: allTasks.length,
+    title: title.value,
+    description: description.value,
+    categoryText: categoryText.innerHTML,
+    categoryColor: categoryColor.style.backgroundColor,
+    date: date.value,
+    priority: priority,
+    status: status,
+    subtask: allSubtask,
+    contacts: selectedContacts,
+  };
+  showPopup();
+  allTasks.push(allTask);
+  save();
+  allSubtask = [];
+  clearTask();
 }
 
 /**
@@ -200,11 +206,11 @@ function openAddTaskContainer(status) {
  */
 function slideAnimation() {
   let mainAddTaskContainer = document.querySelector(".mainAddTaskContainer");
-  let overlayDiv = document.createElement("div");
+  // let overlayDiv = document.createElement("div");
   mainAddTaskContainer.style.transform = "translateX(150%)";
-  overlayDiv.classList.add("overlay");
-  document.body.appendChild(overlayDiv);
-  setCurrentDate();
+  // overlayDiv.classList.add("overlay");
+  // document.body.appendChild(overlayDiv);
+  // // setCurrentDate();
   setTimeout(function () {
     mainAddTaskContainer.style.transform = "translate(0%)";
   }, 100);

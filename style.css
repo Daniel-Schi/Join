@@ -387,11 +387,11 @@ h1{
     }
 
     .nav-bar span{
-        font-size: 20px;
+        font-size: 22px;
     }
 
     .nav-bar a {
-        padding: 13px;
+        font-size: 22px;
     }
 
     .login{

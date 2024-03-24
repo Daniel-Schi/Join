@@ -9,19 +9,23 @@ body {
   margin-left: 70px;
   padding-top: 82px;
 }
+
 .topBoardContainer {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
+
 .topBoardContainer p {
   font-size: 61px;
   font-weight: 700;
   margin: 0px;
 }
+
 .searchBoardContainer {
   display: flex;
 }
+
 .searchBarContainer {
   display: flex;
   background-color: white;
@@ -36,6 +40,7 @@ body {
   border: none;
   font-size: 16px;
 }
+
 .popupCategoryBox {
   display: flex;
   flex-direction: row;
@@ -47,10 +52,12 @@ body {
   border-left: 1px solid #d1d1d1;
   height: 30px;
 }
+
 .searchBarImage {
   margin-left: 15px;
   cursor: pointer;
 }
+
 .addButtonContainer {
   display: flex;
   background-color: #2a3647;
@@ -66,12 +73,14 @@ body {
   margin-right: 65px;
   transition: background 200ms ease-in-out;
 }
+
 .uperStatusBox {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
 }
+
 .addButtonContainer:hover {
   box-shadow: 0 4px 4px 0 rgb(0 0 0 / 25%);
   background-color: rgb(41, 171, 226);
@@ -81,6 +90,7 @@ body {
 .addButtonContainer img {
   margin-left: 10px;
 }
+
 .addSecondButtonContainer {
   display: none;
 }
@@ -96,6 +106,7 @@ body {
   margin-top: 80px;
   margin-right: 65px;
 }
+
 .statusContainer {
   display: flex;
   min-width: 250px;
@@ -145,6 +156,7 @@ body {
   width: 100%;
   flex-direction: row-reverse;
 }
+
 .mainHelpContainer h1 {
   font-weight: 700;
   font-size: 61px;
@@ -161,12 +173,14 @@ body {
   gap: 35px;
   margin-bottom: 15px;
 }
+
 .numberHelp {
   display: flex;
   margin: 0px;
   font-weight: 700;
   font-size: 27px;
 }
+
 .createTaskBox:hover {
   content: url("img/blueplusicon.svg");
 }
@@ -174,6 +188,7 @@ body {
 .searchBarContainer:focus-within {
   outline: 2px solid black;
 }
+
 .searchBarContainer input:focus {
   outline: none;
 }
@@ -199,6 +214,7 @@ body {
   height: auto;
   cursor: grab;
   width: 251px;
+  text-wrap: wrap;
 }
 
 .cardCategory {
@@ -229,6 +245,7 @@ body {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
 .progressBarContainer {
   display: flex;
   gap: 5px;
@@ -237,6 +254,7 @@ body {
   justify-content: space-between;
   align-items: center;
 }
+
 .cardProgress {
   display: flex;
   width: 100%;
@@ -251,6 +269,11 @@ body {
   display: flex;
   justify-content: flex-end;
 }
+
+.cancelIconPopupCard img {
+  cursor: pointer;
+}
+
 .checkboxStatus {
   margin-top: 5px;
 }
@@ -268,8 +291,8 @@ body {
   left: 35%;
   width: 523px;
   height: auto;
-  border-top-left-radius: 30px;
-  border-bottom-left-radius: 30px;
+  border-top-left-radius: 23px;
+  border-bottom-left-radius: 23px;
   border-bottom-right-radius: 23px;
   border-top-right-radius: 23px;
   background-color: #ffffff;
@@ -284,6 +307,7 @@ body {
   width: 20px;
   margin-left: -10px;
 }
+
 .popupCard::-webkit-scrollbar-thumb {
   background-color: rgba(9, 25, 49);
   border-top-right-radius: 30px;
@@ -339,6 +363,7 @@ body {
   font-size: 22px;
   word-break: break-word;
 }
+
 .popupcardDescription {
   color: #000000;
   font-size: 16px;
@@ -368,9 +393,6 @@ body {
   gap: 10px;
 }
 
-.prioBox span {
-  color: black;
-}
 .popupCardAssigned {
   font-size: 21px;
   height: 15%;
@@ -380,6 +402,7 @@ body {
   font-size: 21px;
   z-index: 4;
 }
+
 .popupCardSubBox {
   display: flex;
   flex-direction: column;
@@ -420,6 +443,7 @@ body {
   left: -50px;
   cursor: pointer;
 }
+
 .popupCardImgBox {
   display: flex;
   align-items: center;
@@ -443,10 +467,6 @@ body {
   z-index: 0;
 }
 
-.cancelIconPopupCard {
-  cursor: pointer;
-}
-
 .cancelPopupCardBox {
   display: flex;
   justify-content: flex-end;
@@ -459,7 +479,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 41px 54px 41px 54px;
+  padding: 61px 74px 61px 74px;
   background: #ffffff;
   border-radius: 30px;
   position: absolute;
@@ -489,6 +509,7 @@ body {
   margin-left: 59px;
   width: 422px;
 }
+
 .middleAddTaskContainer {
   border-left: 1px solid #d1d1d1;
   height: 551px;
@@ -543,6 +564,7 @@ body {
   gap: 5px;
   margin-bottom: 10px;
 }
+
 .popupCardprioContainer {
   display: flex;
   flex-direction: column;
@@ -608,15 +630,16 @@ body {
 }
 
 .colorPopupCategoryBox {
-    display: flex;
-    align-items: center;
-    font-size: 21px;
-    padding: 4px 35px;
-    border-radius: 8px;
-    width: 135px;
-    color: white;
-    cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-size: 21px;
+  padding: 4px 35px;
+  border-radius: 8px;
+  width: 135px;
+  color: white;
+  cursor: pointer;
 }
+
 
 .editPopupCardCategory {
   display: flex;
@@ -641,19 +664,23 @@ body {
   margin: 0px;
   height: 20px;
 }
+
 .secondTitleContainer p {
   font-size: 16px;
   margin-bottom: 19px;
   display: none;
 }
+
 .statusButtonsContainer {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
 }
+
 .popupCardStatus b {
   font-size: 21px;
 }
+
 .statusButtonsContainer button {
   margin-top: 10px;
   width: 100px;
@@ -676,6 +703,7 @@ body {
   margin-top: 10px;
   align-items: center;
 }
+
 .initials {
   display: flex;
   justify-content: center;
@@ -716,14 +744,12 @@ body {
 }
 
 @media (max-width: 1275px) {
-  
   .mainAddTaskContainer {
     left: 24%;
     margin-left: 50px;
     width: 50%;
-    overflow: scroll;
-    height: 85vh ;
   }
+
   .bodyAddTaskCotnainer {
     flex-direction: column;
   }
@@ -735,9 +761,11 @@ body {
   .rightAddTaskContainer {
     margin-left: 0px;
   }
+
   .bodyAddTaskCotnainer {
     align-items: center;
   }
+
   .buttonAddTaskContainer {
     display: flex;
     gap: 10px;
@@ -762,15 +790,18 @@ body {
     justify-content: space-between;
     align-items: center;
   }
+
   .topBoardContainer {
     flex-direction: column;
     align-items: flex-start;
   }
+
   .searchBoardContainer {
     display: flex;
     width: 100%;
     justify-content: space-between;
   }
+
   .addButtonContainer {
     display: none;
   }
@@ -801,9 +832,11 @@ body {
   .addSecondButtonContainer img {
     margin-left: 10px;
   }
+
   .headlineContainer {
     margin-bottom: 30px;
   }
+
   .bottomBoardContainer {
     margin-top: 22px;
     margin-right: 65px;
@@ -814,9 +847,11 @@ body {
   .bottomBoardContainer {
     flex-direction: column;
   }
+
   .statusContainer {
     width: 100%;
   }
+
   .card {
     width: 93%;
   }
@@ -827,6 +862,7 @@ body {
     transform: translate(-50%, -50%);
   }
 }
+
 @media (max-width: 835px) {
   .addSecondButtonContainer {
     margin-left: 0px;
@@ -835,12 +871,15 @@ body {
     padding-left: 0px;
     padding-right: 0px;
   }
+
   .addSecondButtonContainer b {
     display: none;
   }
+
   .addSecondButtonContainer img {
     margin-left: 12px;
   }
+
   .popupCard {
     top: 50%;
     left: 50%;
@@ -849,21 +888,24 @@ body {
 }
 
 @media (max-width: 768px) {
-  .showCard{
+  .showCard {
     border-radius: 0;
-    
+
   }
-  .showMainBoardContainer{
+
+  .showMainBoardContainer {
     overflow-y: scroll;
     max-height: 85vh;
   }
+
   .showMainBoardContainer::-webkit-scrollbar-track {
-    background-color: transparent !important; 
+    background-color: transparent !important;
   }
 
   .showMainBoardContainer::-webkit-scrollbar {
     background-color: transparent;
   }
+
   body {
     margin-left: 0px;
     margin: 0px;
@@ -876,13 +918,16 @@ body {
     margin-right: 29px;
     padding-top: 0px;
   }
+
   .bottomBoardContainer {
     margin-top: 0px;
     margin-right: 0px;
   }
+
   .addSecondButtonContainer {
     margin-right: 0px;
   }
+
   .mainHelpContainer {
     margin-top: 101px;
     margin-left: 33px;
@@ -896,6 +941,7 @@ body {
     display: flex;
     white-space: nowrap;
   }
+
   .helpIconContainer {
     display: none;
   }
@@ -903,6 +949,7 @@ body {
   .topBoardContainer p {
     font-size: 47px;
   }
+
   .secondTitleContainer p {
     font-size: 16px;
     margin-bottom: 19px;
@@ -925,7 +972,7 @@ body {
     width: 100%;
     height: 1650px;
     justify-content: flex-start;
-    top: 65px;
+    top: 85px;
     margin: 0px;
   }
 
@@ -959,7 +1006,7 @@ body {
     padding-top: 0px;
     justify-content: center;
   }
-  
+
 
   .popupCardImgBox {
     flex-direction: column;
@@ -988,42 +1035,44 @@ body {
     border-radius: 8px;
     width: fit-content;
     color: white;
-}
+  }
 
-.editPopupCardCategory {
-  display: flex;
-  align-items: center;
-  height: 40px;
-  font-size: 21px;
-  padding: 4px 35px;
-  border-radius: 8px;
-  margin-bottom: 10px;
-  width: fit-content;
-  color: white;
-  cursor: pointer;
-  border: 4px ridge black;
-}
+  .editPopupCardCategory {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    font-size: 21px;
+    padding: 4px 35px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    width: fit-content;
+    color: white;
+    cursor: pointer;
+    border: 4px ridge black;
+  }
 
-.popupCardTitle {
-  color: #2a3647;
-  font-weight: bold;
-  font-size: 40px;
-  word-break: break-word;
-}
+  .popupCardTitle {
+    color: #2a3647;
+    font-weight: bold;
+    font-size: 40px;
+    word-break: break-word;
+  }
 }
 
 @media (max-width: 360px) {
-  
+
   .mainBoardContainer {
     margin-left: 10px;
     margin-right: 20px;
     padding-top: 0px;
   }
+
   .helpTitleContainer {
     font-size: 16px;
     display: flex;
     white-space: normal;
   }
+
   .buttonAddTaskContainer {
     display: flex;
     gap: 10px;
