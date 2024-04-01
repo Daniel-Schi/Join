@@ -289,7 +289,7 @@ body {
   position: absolute;
   top: 88px;
   left: 35%;
-  width: 523px;
+  width: 450px;
   height: auto;
   border-top-left-radius: 23px;
   border-bottom-left-radius: 23px;
@@ -297,10 +297,10 @@ body {
   border-top-right-radius: 23px;
   background-color: #ffffff;
   box-shadow: 0px 0px 14px 3px rgb(0 0 0 / 0.04);
-  padding: 50px;
+  padding: 30px;
   flex-direction: column;
   gap: 25px;
-  z-index: 10;
+  z-index: 20;
 }
 
 .popupCard::-webkit-scrollbar {
@@ -731,11 +731,6 @@ body {
   margin-right: 5px;
 }
 
-.popupCard {
-  position: fixed;
-  max-height: 700px;
-  overflow-y: scroll !important;
-}
 
 @media (max-width: 1335px) {
   .middleAddTaskContainer {
@@ -1007,11 +1002,6 @@ body {
     justify-content: center;
   }
 
-
-  .popupCardImgBox {
-    flex-direction: column;
-  }
-
   .popupCardImgBox img {
     display: block;
   }
@@ -1025,7 +1015,18 @@ body {
   }
 }
 
+@media (max-width: 550px) {
+  .popupCard {
+    width: 350px;
+  }
+}
+
 @media (max-width: 480px) {
+
+  .popupCard {
+    width: 300px;
+  }
+  
   .popupcardCategory {
     display: flex;
     align-items: center;

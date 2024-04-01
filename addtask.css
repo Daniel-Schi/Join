@@ -437,15 +437,20 @@ textarea {
   margin-top: 5px;
 }
 
-.contactBox {
+.assignedUserList {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   gap: 10px;
   padding: 0px 21px;
   width: 90%;
 }
 
-
+.assignedCurrentUser {
+  display: flex;
+    align-items: baseline;
+    gap: 10px;
+}
 
 .contactBox:hover {
   background-color: #d1d1d1;

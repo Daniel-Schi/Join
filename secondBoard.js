@@ -7,13 +7,16 @@ function searchCards() {
   const cards = document.querySelectorAll(".card");
   const matchedCards = [];
   cards.forEach((card) => {
+    const cardCategory = card 
+      .querySelector(".cardCategory")
+      .textContent.toLowerCase();
     const cardTitle = card
       .querySelector(".cardTitle")
       .textContent.toLowerCase();
     const cardDescription = card
       .querySelector(".cardDescription")
       .textContent.toLowerCase();
-    if (cardTitle.includes(searchValue) || cardDescription.includes(searchValue)) {
+    if (cardCategory.includes(searchValue) || cardTitle.includes(searchValue) || cardDescription.includes(searchValue)) {
       matchedCards.push(card);
     }
   });
@@ -45,7 +48,7 @@ async function showCard(taskId) {
  */
 async function showCardPopup(taskId) {
   let task = allTasks.find((task) => task.id === taskId);
-  let overlayDiv = document.createElement("div");
+  // let overlayDiv = document.createElement("div");
   let popupCard = document.getElementById("popupContainer");
   let { priorityImage, priorityText, backgroundColor } =
     await checkPrioPopupCard(task);
@@ -53,8 +56,8 @@ async function showCardPopup(taskId) {
   let assignedContactsHtml = task.contacts
     .map((contact) => generateInitialsAndFullName(contact))
     .join("");
-  overlayDiv.classList.add("overlay");
-  document.body.appendChild(overlayDiv);
+  // overlayDiv.classList.add("overlay");
+  // document.body.appendChild(overlayDiv);
   popupCard.innerHTML = generatePopupCardHtml(task, taskId, subtask, backgroundColor, priorityText, priorityImage, assignedContactsHtml);
 }
 
@@ -110,8 +113,7 @@ async function editShowCard(taskId) {
 function closePopupTaskCard() {
   let mainAddTaskContainer = document.querySelector(".mainAddTaskContainer");
   let overlayDiv = document.querySelector("#overlaydings");
-  // document.body.removeChild(overlayDiv);
-  // mainAddTaskContainer.classList.remove("open");
+
   mainAddTaskContainer.classList.add("d-none");
   overlayDiv.classList.remove("overlay");
   // Entferne den Event-Listener, um zu verhindern, dass die Karte geschlossen wird, wenn sie bereits geschlossen ist
@@ -133,15 +135,11 @@ function closePopupTaskCard() {
  * Closes the popup card and renders the board cards.
  */
 function closePopupCard() {
-  document.getElementById("body").style.overflow = "auto";
   let popupCard = document.getElementById("popupContainer");
-  let overlayDiv = document.querySelector(".overlay");
-  if (overlayDiv) {
-    document.body.removeChild(overlayDiv);
-  }
-  popupCard.innerHTML = "";
+  popupCard.innerHTML = '';
   renderBoardCards();
 }
+
 
 /**
  * Closes the show card popup and displays the main board container.
@@ -267,6 +265,30 @@ function openDropBoxAssigned(taskId) {
   }
 }
 
+// function openDropBoxAssigned(taskId) {
+//   let dropDownUser = document.getElementById("dropDownUser");
+//   let childUserContainer = document.getElementById("assigned");
+//   renderAllContacts(taskId);
+//   if (dropDownUser.classList.contains("d-none")) {
+//     dropUser(dropDownUser, childUserContainer);
+//   } else {
+//     dropUserElse(dropDownUser, childUserContainer);
+//   }
+// }
+
+
+/**
+ * Clears the assigned contacts from the dropdown user box and hides the box.
+ */
+function clearDropBoxAssigned() {
+  let dropDownUser = document.getElementById("dropDownUser");
+  let childUserContainer = document.getElementById("assigned");
+  selectedContacts = [];
+  dropDownUser.classList.add("d-none");
+  dropDownUser.classList.remove("dropDownBox");
+  childUserContainer.classList.remove("b-none");
+}
+
 /**
  * Opens the dropdown category box to create a new category for tasks.
  */
@@ -282,17 +304,6 @@ function openDropBoxCategory() {
   }
 }
 
-/**
- * Clears the assigned contacts from the dropdown user box and hides the box.
- */
-function clearDropBoxAssigned() {
-  let dropDownUser = document.getElementById("dropDownUser");
-  let childUserContainer = document.getElementById("assigned");
-  selectedContacts = [];
-  dropDownUser.classList.add("d-none");
-  dropDownUser.classList.remove("dropDownBox");
-  childUserContainer.classList.remove("b-none");
-}
 
 /**
  * Resets the background color and image of the specified element.

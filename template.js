@@ -4,7 +4,7 @@ function generateCardHTML(task) {
     .map((contact) => generateInitials(contact))
     .join("");
 
-  return `
+  return /*html*/`
     <div draggable="true" onclick="showCard(${task.id})" ondragstart="startDragging(${task.id})" class="card">
       <div class="cardCategory" style="background-color:${task.categoryColor}">${task.categoryText}</div>
       <div class="cardTitle">${task.title}</div>
@@ -28,8 +28,8 @@ function generatePopupCardHtml(
   assignedContactsHtml
 ) {
   return /*html*/`
-  <div id="overlaydings" onclick="closePopupCard()">
-    <div class="popupCard">
+  <div class="overlay" id="overlayPopup" onclick="closePopupCard()">
+    <div class="popupCard" onclick="event.stopPropagation()">
       <div>
         <div class="cancelPopupCardBox"><div onclick="closePopupCard()" class="cancelIconPopupCard"><img src="img/cross.png"></div></div>
         <div class="popupcardCategory" style="background-color:${task.categoryColor}">${task.categoryText}</div>
@@ -269,6 +269,7 @@ function popupAddTaskContainerTemplate(status) {
                 <img src="img/arrowTask.svg">
               </div>
               <div class="d-none" id="dropDownUser"></div>
+              <div class="d-none" id="selectedUser"></div>
               <p class="error-message" id="assigned-error"></p>
             </div>
           </div>
@@ -392,50 +393,50 @@ function renderSummaryCardsHTML(totalCount, todoCount, progressCount, feedbackCo
 function renderHTML() {
   return /*html*/`
   <div>
-                  <h1>Log in</h1>
-                  <div class="overH1-line">
-                    <div class="h1-line"></div>
-                  </div>
-              </div>
-              <form class="login-value">
-                  <div class="relativ-for-icon">
-                      <input required placeholder="Email" type="email" id="email">
-                      <img src="img/emailicon.svg" alt="">
-                    </div>
-                    <div class="relativ-for-icon">
-                      <input required onkeyup="checkInput()" id="password" placeholder="Password" type="password">
-                      <img id="password-img" onclick="seePassword()" src="img/passwordicon.svg" alt="">
-                      <span id="wrong" class="d-none worng">wrong password</span>
-                  </div>
-                  <div class="password-options">
-                      <div class="checkbox">
-                          <div>
-                              <input onclick="RememberMeSetLocalStorage()" id="check" type="checkbox">
-                          </div>
-                          <div>
-                              <span>Remember me</span>
-                          </div>
-                      </div>
-                      <div class="forgot">
-                        <a onclick="renderPassword()">Forgot my password</a>
-                      </div>
-                    </div>
-                    <div class="login-buttons">
-                      <div>
-                        <button type="submit" onclick="login(event)" class="login-button">Log in</button>
-                      </div>
-                      <div>
-                        <button type="button" onclick="guestLogin()" id="guest" class="guest-button">Guest Log in</button>
-                      </div>
-                    </div>
-              </form>
+    <h1>Log in</h1>
+    <div class="overH1-line">
+      <div class="h1-line"></div>
+    </div>
+  </div>
+  <form class="login-value">
+    <div class="relativ-for-icon">
+      <input required placeholder="Email" type="email" id="email">
+      <img src="img/emailicon.svg" alt="">
+    </div>
+    <div class="relativ-for-icon">
+      <input required onkeyup="checkInput()" id="password" placeholder="Password" type="password">
+      <img id="password-img" onclick="seePassword()" src="img/passwordicon.svg" alt="">
+      <span id="wrong" class="d-none worng">wrong password</span>
+    </div>
+    <div class="password-options">
+      <div class="checkbox">
+        <div>
+          <input onclick="RememberMeSetLocalStorage()" id="check" type="checkbox">
+        </div>
+      <div>
+      <span>Remember me</span>
+    </div>
+    </div>
+    <div class="forgot">
+      <a onclick="renderPassword()">Forgot my password</a>
+    </div>
+    </div>
+    <div class="login-buttons">
+      <div>
+        <button type="submit" onclick="login(event)" class="login-button">Log in</button>
+      </div>
+      <div>
+        <button type="button" onclick="guestLogin()" id="guest" class="guest-button">Guest Log in</button>
+      </div>
+    </div>
+  </form>
 
 `;
 }
 
 function SignUpHTML() {
   return /*html*/`
-  <div class="back">
+<div class="back">
   <img onclick="back()" src="img/blackarrowicon.svg" alt="">
 </div>
 <div>
@@ -446,23 +447,23 @@ function SignUpHTML() {
 </div>
 <div class="login-value">
   <form onsubmit="register();return false;">
-      <div class="relativ-for-icon">
-          <input required id="inputName" placeholder="name" type="text" minlength="2">
-          <img src="img/people.svg" alt="">
+    <div class="relativ-for-icon">
+      <input required id="inputName" placeholder="name" type="text" minlength="2">
+      <img src="img/people.svg" alt="">
+    </div>
+    <div class="relativ-for-icon">
+      <input required id="inputEmail" placeholder="Email" type="email">
+      <img src="img/emailicon.svg" alt="">
+    </div>
+    <div class="relativ-for-icon">
+      <input required onkeyup="checkInput()" id="password" placeholder="Password" type="password">
+      <img id="password-img" onclick="seePassword()" src="img/passwordicon.svg" alt="">
+    </div>
+    <div class="login-buttons-sign-up">
+      <div>
+        <button id="Btn" class="login-button">Sign up</button>
       </div>
-      <div class="relativ-for-icon">
-          <input required id="inputEmail" placeholder="Email" type="email">
-          <img src="img/emailicon.svg" alt="">
-      </div>
-      <div class="relativ-for-icon">
-          <input required onkeyup="checkInput()" id="password" placeholder="Password" type="password">
-          <img id="password-img" onclick="seePassword()" src="img/passwordicon.svg" alt="">
-      </div>
-      <div class="login-buttons-sign-up">
-          <div>
-              <button id="Btn" class="login-button">Sign up</button>
-          </div>
-      </div>
+    </div>
   </form>
 </div>
 

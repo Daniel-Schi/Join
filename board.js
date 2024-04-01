@@ -312,7 +312,19 @@ function renderAllContacts(taskId) {
   for (let i = 0; i < allContacts.length; i++) {
     const name = allContacts[i];
     const isChecked = selectedContacts.includes(name) ? "checked" : "";
-    dropDownUser.innerHTML += `<div class="contactBox"><input type="checkbox" id="contact${i}" name="contact${i}" ${isChecked} onchange="saveSelectedContact(${i})"><label for="contact${i}">${name}</label></div>`;
+    const names = name.substring(0, name.indexOf(" ")).charAt(0);
+    const lastnames = name.substring(name.indexOf(" ") + 1).charAt(0);
+    const initialsBackgroundColor = initialsColors[name] || getRandomColor();
+    initialsColors[name] = initialsBackgroundColor;
+    dropDownUser.innerHTML += `
+    <div class="assignedUserList">
+      <div class="assignedCurrentUser">
+        <div class="initials" id="initials" style="background-color:${initialsBackgroundColor}">${names}${lastnames}</div>
+        <div id="initialsName">${name}</div>
+      </div>
+      <input type="checkbox" id="contact${i}" name="contact${i}" ${isChecked} onchange="saveSelectedContact(${i})">
+    </div>`;
+    // dropDownUser.innerHTML += `<div class="contactBox"><input type="checkbox" id="contact${i}" name="contact${i}" ${isChecked} onchange="saveSelectedContact(${i})"><label for="contact${i}">${name}</label></div>`;
   }
   markMatchingContacts(taskId);
 }
